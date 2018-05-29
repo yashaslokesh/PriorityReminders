@@ -8,11 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
+    //MARK: Properties
+    
+    @IBOutlet weak var eventNameField: UITextField!
+    
+    
+    //MARK: Actions
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        eventNameField.delegate = self
+    }
+    
+    //MARK: UITextFieldDelegates
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard
+        eventNameField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
     }
 
     override func didReceiveMemoryWarning() {

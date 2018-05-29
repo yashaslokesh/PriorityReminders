@@ -33,4 +33,11 @@ class PriorityRemindersTests: XCTestCase {
         }
     }
     
+    //MARK: Event Class Tests
+    
+    func testEventInitialization(){
+       
+        
+    }
+    
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */; };
+		C8E9403F20BCEA9700B3AD31 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */; };
+		C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9404020BCEAE200B3AD31 /* Event.swift */; };
 		C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F46D3220BB9FA20048E755 /* AppDelegate.swift */; };
 		C8F46D3520BB9FA20048E755 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F46D3420BB9FA20048E755 /* ViewController.swift */; };
 		C8F46D3820BB9FA20048E755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F46D3620BB9FA20048E755 /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		C8E9404020BCEAE200B3AD31 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C8F46D2F20BB9FA20048E755 /* PriorityReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PriorityReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F46D3220BB9FA20048E755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8F46D3420BB9FA20048E755 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,9 +103,12 @@
 		C8F46D3120BB9FA20048E755 /* PriorityReminders */ = {
 			isa = PBXGroup;
 			children = (
+				C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */,
 				C8F46D3220BB9FA20048E755 /* AppDelegate.swift */,
 				C8F46D3420BB9FA20048E755 /* ViewController.swift */,
 				C8F46D3620BB9FA20048E755 /* Main.storyboard */,
+				C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */,
+				C8E9404020BCEAE200B3AD31 /* Event.swift */,
 				C8F46D3920BB9FA20048E755 /* Assets.xcassets */,
 				C8F46D3B20BB9FA20048E755 /* LaunchScreen.storyboard */,
 				C8F46D3E20BB9FA20048E755 /* Info.plist */,
@@ -256,8 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */,
 				C8F46D3520BB9FA20048E755 /* ViewController.swift in Sources */,
+				C8E9403F20BCEA9700B3AD31 /* EventTableViewController.swift in Sources */,
 				C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */,
+				C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
