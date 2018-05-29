@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EventViewController.swift
 //  PriorityReminders
 //
 //  Created by Yashas Lokesh on 5/27/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class EventViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: Properties
     

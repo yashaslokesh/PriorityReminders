@@ -21,6 +21,8 @@ class EventTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        createSampleEvents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,24 +33,37 @@ class EventTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        // The sections of cells, in this case, only one (only one section of Events)
         return 1
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Return the number of rows in the table, by getting the number of events in the events array
+        return events.count
+    }
 
-        // Configure the cell...
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let eventCellIdentifier = "EventTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: eventCellIdentifier, for: indexPath) as? EventTableViewCell else {
+            fatalError("The cell is not an instance of EventTableViewCell")
+        }
+        
+        //Configure the cell...
+        
+        // Configures the cell with the appropriate event
+        
+        let event = events[indexPath.row]
+        
+        cell.nameLabel.text = event.eventName
+        cell.endDateLabel.text = event.eventEndDate.description
+        cell.priorityLabel.text = event.eventPriority.description
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -95,4 +110,21 @@ class EventTableViewController: UITableViewController {
     }
     */
 
+    private func createSampleEvents() {
+        guard let eventOne = Event(name: "Be Awesome", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Don't forget to be awesome everyday!", priority: 0) else {
+            fatalError("eventOne Creation failure")
+        }
+        
+        guard let eventTwo = Event(name: "Eat Breakfast", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Eat breakfast everyday so you have energy in the mornings!", priority: 0) else {
+            fatalError("eventTwo Creation failure")
+        }
+        
+        guard let eventThree = Event(name: "Change the World", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Go out and change the world, in any small way that you can...", priority: 0) else {
+            fatalError("eventThree Creation Failure")
+        }
+
+        events += [eventOne, eventTwo, eventThree]
+        
+    }
+    
 }

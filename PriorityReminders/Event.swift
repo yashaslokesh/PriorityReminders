@@ -16,8 +16,10 @@ class Event {
     var eventStartDate : Date
     var eventEndDate : Date
     var eventPriority : Int
+    var eventDescription : String
     
-    init?(name : String, startDate : Date, endDate : Date, priority : Int) {
+    
+    init?(name : String, startDate : Date, endDate : Date, description : String, priority : Int) {
         
         guard endDate > startDate else {
             return nil
@@ -27,6 +29,7 @@ class Event {
         self.eventStartDate = startDate
         self.eventEndDate = endDate
         self.eventPriority = priority
+        self.eventDescription = description
     }
     
 }
