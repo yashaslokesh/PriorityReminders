@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class EventTableViewController: UITableViewController {
 
@@ -15,14 +16,24 @@ class EventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Edit button is set as the left button in the table view controller
+        navigationItem.leftBarButtonItem = editButtonItem
+        
+        // If events from previous openings of the app are available, then add them to a local constant savedEvents which is then added to the current array of Events
+        
+        if let savedEvents = self.loadEventsToArray() {
+            events += savedEvents
+        } else {
+            createSampleEvents()
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        createSampleEvents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,26 +75,51 @@ class EventTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: Actions
+    
+    
+    // Receives an action from the eventViewController (the detail) and accordingly sets up the table scene
+    @IBAction func unwindToEventList(sender: UIStoryboardSegue) {
+        if let source = sender.source as? EventViewController, let event = source.event {
+            
+            if let selectedIndex = tableView.indexPathForSelectedRow {
+                events[selectedIndex.row] = event
+                tableView.reloadRows(at: [selectedIndex], with: .fade)
+            } else {
+                let indexPath = IndexPath(row: events.count, section: 0)
+                events.append(event)
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            // Save the Events whenever an event is added or modified (or cancel is clicked)
+            self.saveEvents()
+        }
+    }
+    
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            // Remove the event that was chosen to be deleted from the events array
+            events.remove(at: indexPath.row)
+            
+            // Save Events array once the delete command goes through and an event is removed
+            self.saveEvents()
+            
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.
@@ -100,16 +136,46 @@ class EventTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier ?? "" {
+        case "AddEvent":
+            os_log("Adding a new event.", log: OSLog.default, type: .debug)
+        case "ShowDetail":
+            guard let eventViewController = segue.destination as? EventViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedEventCell = sender as? EventTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedEventCell) else {
+                fatalError("Selected event is not being displayed on table")
+            }
+            
+            let selectedEvent = events[indexPath.row]
+            eventViewController.event = selectedEvent
+            
+        default:
+            fatalError("Unexpected Segue Identifier: \(String(describing: segue.identifier))")
+        }
     }
-    */
+ 
+    
+    // MARK: Private Methods
 
+    // Create sample events to populate the screen, when the app is first loaded
+    
     private func createSampleEvents() {
         guard let eventOne = Event(name: "Be Awesome", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Don't forget to be awesome everyday!", priority: 0) else {
             fatalError("eventOne Creation failure")
@@ -124,7 +190,24 @@ class EventTableViewController: UITableViewController {
         }
 
         events += [eventOne, eventTwo, eventThree]
+    }
+    
+    // Use NSKeyedArchiver to archive the Events array to memory with the path specified in the Event class
+    
+    private func saveEvents() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: Event.ArchivingURL.path)
         
+        if isSuccessfulSave {
+            os_log("Events successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save events...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    // Use NSKeyedUnarchiver to unarchive the optional Events array from memory with the path specified in the Event class
+    
+    private func loadEventsToArray() -> [Event]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Event.ArchivingURL.path) as? [Event]
     }
     
 }
