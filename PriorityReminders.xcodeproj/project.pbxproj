@@ -105,8 +105,8 @@
 			children = (
 				C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */,
 				C8F46D3220BB9FA20048E755 /* AppDelegate.swift */,
-				C8F46D3420BB9FA20048E755 /* EventViewController.swift */,
 				C8F46D3620BB9FA20048E755 /* Main.storyboard */,
+				C8F46D3420BB9FA20048E755 /* EventViewController.swift */,
 				C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */,
 				C8E9404020BCEAE200B3AD31 /* Event.swift */,
 				C8F46D3920BB9FA20048E755 /* Assets.xcassets */,

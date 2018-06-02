@@ -28,6 +28,9 @@ class EventTableViewController: UITableViewController {
             createSampleEvents()
         }
         
+        events = self.sortArray(array: events)
+        tableView.reloadData()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -68,10 +71,33 @@ class EventTableViewController: UITableViewController {
         
         let event = events[indexPath.row]
         
+        let percentage : Double = (event.percentageDone() > 100.0 ? 100.0 : event.percentageDone())
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        
         cell.nameLabel.text = event.eventName
-        cell.endDateLabel.text = event.eventEndDate.description
-        cell.priorityLabel.text = event.eventPriority.description
+        cell.endDateLabel.text = dateFormatter.string(from: event.eventEndDate)
+        cell.daysLeftNumberLabel.text = "\(event.daysLeft() < 0 ? 0 : event.daysLeft())"
+        cell.timeDoneLabel.text = "\(percentage)%"
 
+        if percentage >= 75.0 {
+            cell.backgroundColor = UIColor.red
+            for UILabel in cell.labelsArray {
+                UILabel.textColor = UIColor.white
+            }
+        } else {
+            if percentage >= 50.0 {
+                cell.backgroundColor = UIColor.yellow
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
+            for UILabel in cell.labelsArray {
+                UILabel.textColor = UIColor.black
+            }
+        }
+        
         return cell
     }
     
@@ -90,6 +116,9 @@ class EventTableViewController: UITableViewController {
                 events.append(event)
                 tableView.insertRows(at: [indexPath], with: .fade)
             }
+            // Sort array
+            events = self.sortArray(array: events)
+            tableView.reloadData()
             // Save the Events whenever an event is added or modified (or cancel is clicked)
             self.saveEvents()
         }
@@ -110,6 +139,9 @@ class EventTableViewController: UITableViewController {
             // Remove the event that was chosen to be deleted from the events array
             events.remove(at: indexPath.row)
             
+            // Sort array
+            events = self.sortArray(array: events)
+            tableView.reloadData()
             // Save Events array once the delete command goes through and an event is removed
             self.saveEvents()
             
@@ -210,4 +242,8 @@ class EventTableViewController: UITableViewController {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Event.ArchivingURL.path) as? [Event]
     }
     
+    // Sorts array in descending order so that events with a higher percentage done are at the top, then reloads the table view so that the table view complies
+    func sortArray(array : [Event]) -> [Event] {
+        return array.sorted(by: { $0.percentageDone() > $1.percentageDone()})
+    }
 }

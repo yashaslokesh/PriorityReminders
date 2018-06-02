@@ -21,13 +21,12 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     var event : Event?
     
+    let dateFormatter : DateFormatter = DateFormatter()
+    
     // Date Picker Text Fields
     
-    @IBOutlet weak var startDate_DatePickerField: UITextField!
-    @IBOutlet weak var startDate_TimePickerField: UITextField!
-    @IBOutlet weak var endDate_DatePickerField: UITextField!
-    @IBOutlet weak var endDate_TimePickerField: UITextField!
-    
+    @IBOutlet weak var startDatePickerField: UITextField!
+    @IBOutlet weak var endDatePickerField: UITextField!
     
     //MARK: Actions
     
@@ -55,13 +54,17 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             return
         }
         
-//        let dateFormatter = DateFormatter()
+        let fullDateFormatter = DateFormatter()
+        fullDateFormatter.dateFormat = "MMMM dd, yyyy"
         
         // ?? asks if a UITextField.text has a value, and if it does, it returns that value. If it does not, it returns the String value placed after the ??
         
         let name : String = eventNameField.text ?? ""
-        let startDate : Date = startDate_DatePicker.date
-        let endDate : Date = endDate_DatePicker.date
+        let startDateString : String = startDatePickerField.text!
+        let startDate : Date = fullDateFormatter.date(from: startDateString)!
+        
+        let endDateString : String = endDatePickerField.text!
+        let endDate : Date = fullDateFormatter.date(from: endDateString)!
         let eventDescription : String = descriptionTextField.text ?? ""
         let priority : Int = 0
         
@@ -76,39 +79,70 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let startDatePicker = UIDatePicker()
-        startDatePicker.datePickerMode = .date
-        self.startDate_DatePickerField.inputView = startDatePicker
+        // Set delegate for all text fields, handle user input using this delegate
+        self.eventNameField.delegate = self
+        self.startDatePickerField.delegate = self
+        self.endDatePickerField.delegate = self
         
-        let startTimePicker = UIDatePicker()
-        startTimePicker.datePickerMode = .time
-        self.startDate_TimePickerField.inputView = startTimePicker
+        // Set date picker and toolbar as input views
         
-        let endDatePicker = UIDatePicker()
-        endDatePicker.datePickerMode = .date
-        self.endDate_DatePickerField.inputView = endDatePicker
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
         
-        let endTimePicker = UIDatePicker()
-        endTimePicker.datePickerMode = .time
-        self.endDate_TimePickerField.inputView = endTimePicker
+        startDatePickerField.text = dateFormatter.string(from: Date())
         
-        // Set delegate for name field, handle user input using this delegate
-        eventNameField.delegate = self
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        datePicker.addTarget(self, action: #selector(EventViewController.datePickerChangedValue(_:)), for: UIControlEvents.valueChanged)
+        
+        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(EventViewController.doneSelectingDate))
+
+        let toolbar : UIToolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.sizeToFit()
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        
+        startDatePickerField.inputView = datePicker
+        endDatePickerField.inputView = datePicker
+        
+        startDatePickerField.inputAccessoryView = toolbar
+        endDatePickerField.inputAccessoryView = toolbar
         
         // If the event is non-nil (it exists already), then populate view with already-set properties, for the purpose of editing the event entry
         
         if let event = event {
             eventNameField.text = event.eventName
-            startDate_DatePicker.date = event.eventStartDate
-            endDate_DatePicker.date = event.eventEndDate
+            
+            startDatePickerField.text = dateFormatter.string(from: event.eventStartDate)
+            endDatePickerField.text = dateFormatter.string(from: event.eventEndDate)
+            
             descriptionTextField.text = event.eventDescription
             
         }
         
         // Enable save button if text field has valid string
         updateSaveButton()
+    }
+    
+    //MARK: Date Picking methods
+    
+    @objc func datePickerChangedValue(_ sender: UIDatePicker) {
+        let date = sender.date
+        
+        if startDatePickerField.isFirstResponder {
+            startDatePickerField.text = dateFormatter.string(from: date)
+        } else if endDatePickerField.isFirstResponder {
+            endDatePickerField.text = dateFormatter.string(from: date)
+        }
+    }
+    
+    @objc func doneSelectingDate(_ sender : UIBarButtonItem) {
+        if startDatePickerField.isFirstResponder {
+            startDatePickerField.resignFirstResponder()
+        } else if endDatePickerField.isFirstResponder {
+            endDatePickerField.resignFirstResponder()
+        }
     }
     
     //MARK: UITextViewDelegates
@@ -123,13 +157,14 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard
+        print("User finished editing event name")
         eventNameField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButton()
-        navigationItem.title = textField.text
+        navigationItem.title = eventNameField.text
     }
 
     override func didReceiveMemoryWarning() {
@@ -141,9 +176,11 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     private func updateSaveButton() {
         
-        //Disable save button is the name field is empty
-        let text : String = eventNameField.text ?? ""
-        saveEventButton.isEnabled = !text.isEmpty
+        //Disable save button if any mandatory fields are empty
+        let nameText : String = eventNameField.text ?? ""
+        let endDateText : String = endDatePickerField.text!
+        
+        saveEventButton.isEnabled = !(nameText.isEmpty || endDateText.isEmpty)
         
     }
 

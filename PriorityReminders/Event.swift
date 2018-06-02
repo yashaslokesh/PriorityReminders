@@ -11,7 +11,7 @@ import os.log
 
 class Event : NSObject, NSCoding {
     
-    // an initializer to test the decoding of the name object, at a minimum
+    // an initializer to test the decoding of the name object, at a minimum, and then decodes the rest of the properties
     
     required convenience init?(coder aDecoder: NSCoder) {
         guard let name = aDecoder.decodeObject(forKey: EventProperties.eventName) as? String else {
@@ -75,6 +75,32 @@ class Event : NSObject, NSCoding {
         aCoder.encode(eventEndDate, forKey: EventProperties.eventEndDate)
         aCoder.encode(eventPriority, forKey: EventProperties.eventPriority)
         aCoder.encode(eventDescription, forKey: EventProperties.eventDescription)
+    }
+    
+    // Functions to get statistics about the dates
+    
+    func daysLeft() -> Int {
+        let calendar = Calendar.current
+        
+        let components = calendar.dateComponents([.day], from: Date(), to: eventEndDate)
+        
+        return components.day ?? 0
+    }
+    
+    func percentageDone() -> Double {
+        
+        let calendar = Calendar.current
+        
+        let totalDays = calendar.dateComponents([.day], from: eventStartDate, to: eventEndDate)
+        
+        var percentage : Double? = nil
+        
+        if let total = totalDays.day {
+            percentage = 100.0 * ( 1.0 - (Double(daysLeft()) / Double(total)) )
+            percentage = Double(floor(100 * percentage!) / 100)
+        }
+        
+        return percentage ?? 0.00
     }
     
 }
