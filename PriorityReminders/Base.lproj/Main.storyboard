@@ -34,8 +34,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbr-l4-KeP">
-                                            <rect key="frame" x="3" y="-2" width="343" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbr-l4-KeP">
+                                            <rect key="frame" x="3" y="-2" width="246" height="79"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                             <nil key="textColor"/>
@@ -212,7 +212,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionTextField" destination="2qw-F2-gcN" id="WT7-y1-uCS"/>
+                        <outlet property="descriptionTextView" destination="2qw-F2-gcN" id="s3E-PS-SdA"/>
                         <outlet property="endDatePickerField" destination="ejk-uF-cBi" id="9gK-yf-nv3"/>
                         <outlet property="eventNameField" destination="HNs-HE-YGM" id="aI0-ef-g6o"/>
                         <outlet property="saveEventButton" destination="4C4-HE-fm9" id="vF7-8y-Unp"/>

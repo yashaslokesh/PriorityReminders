@@ -17,7 +17,7 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventNameField: UITextField!
     
-    @IBOutlet weak var descriptionTextField: UITextView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     var event : Event?
     
@@ -65,7 +65,7 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         let endDateString : String = endDatePickerField.text!
         let endDate : Date = fullDateFormatter.date(from: endDateString)!
-        let eventDescription : String = descriptionTextField.text ?? ""
+        let eventDescription : String = descriptionTextView.text ?? ""
         let priority : Int = 0
         
         event = Event(name: name, startDate: startDate, endDate: endDate, description: eventDescription, priority: priority)
@@ -95,19 +95,21 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         datePicker.addTarget(self, action: #selector(EventViewController.datePickerChangedValue(_:)), for: UIControlEvents.valueChanged)
         
-        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(EventViewController.doneSelectingDate))
-
+        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(EventViewController.doneSelection))
+        
         let toolbar : UIToolbar = UIToolbar()
         toolbar.barStyle = .default
         toolbar.sizeToFit()
         toolbar.setItems([doneButton], animated: true)
         toolbar.isUserInteractionEnabled = true
         
+        
         startDatePickerField.inputView = datePicker
         endDatePickerField.inputView = datePicker
         
         startDatePickerField.inputAccessoryView = toolbar
         endDatePickerField.inputAccessoryView = toolbar
+        descriptionTextView.inputAccessoryView = toolbar
         
         // If the event is non-nil (it exists already), then populate view with already-set properties, for the purpose of editing the event entry
         
@@ -117,7 +119,7 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             startDatePickerField.text = dateFormatter.string(from: event.eventStartDate)
             endDatePickerField.text = dateFormatter.string(from: event.eventEndDate)
             
-            descriptionTextField.text = event.eventDescription
+            descriptionTextView.text = event.eventDescription
             
         }
         
@@ -137,11 +139,13 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
-    @objc func doneSelectingDate(_ sender : UIBarButtonItem) {
+    @objc func doneSelection(_ sender : UIBarButtonItem) {
         if startDatePickerField.isFirstResponder {
             startDatePickerField.resignFirstResponder()
         } else if endDatePickerField.isFirstResponder {
             endDatePickerField.resignFirstResponder()
+        } else if descriptionTextView.isFirstResponder {
+            descriptionTextView.resignFirstResponder()
         }
     }
     
