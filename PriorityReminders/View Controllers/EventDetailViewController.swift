@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     //MARK: Properties
     
@@ -93,9 +93,9 @@ class EventViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         
-        datePicker.addTarget(self, action: #selector(EventViewController.datePickerChangedValue(_:)), for: UIControlEvents.valueChanged)
+        datePicker.addTarget(self, action: #selector(EventDetailViewController.datePickerChangedValue(_:)), for: UIControlEvents.valueChanged)
         
-        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(EventViewController.doneSelection))
+        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(EventDetailViewController.doneSelection))
         
         let toolbar : UIToolbar = UIToolbar()
         toolbar.barStyle = .default

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8550A8C20C352960022B815 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8550A8B20C352960022B815 /* MenuViewController.swift */; };
+		C8550A8F20C352B70022B815 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8550A8E20C352B70022B815 /* MenuTableViewCell.swift */; };
 		C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */; };
-		C8E9403F20BCEA9700B3AD31 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */; };
+		C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */; };
 		C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9404020BCEAE200B3AD31 /* Event.swift */; };
 		C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F46D3220BB9FA20048E755 /* AppDelegate.swift */; };
-		C8F46D3520BB9FA20048E755 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F46D3420BB9FA20048E755 /* EventViewController.swift */; };
+		C8F46D3520BB9FA20048E755 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F46D3420BB9FA20048E755 /* EventDetailViewController.swift */; };
 		C8F46D3820BB9FA20048E755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F46D3620BB9FA20048E755 /* Main.storyboard */; };
 		C8F46D3A20BB9FA20048E755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F46D3920BB9FA20048E755 /* Assets.xcassets */; };
 		C8F46D3D20BB9FA20048E755 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F46D3B20BB9FA20048E755 /* LaunchScreen.storyboard */; };
@@ -37,12 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C8550A8B20C352960022B815 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C8550A8E20C352B70022B815 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
-		C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
+		C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMasterViewController.swift; sourceTree = "<group>"; };
 		C8E9404020BCEAE200B3AD31 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C8F46D2F20BB9FA20048E755 /* PriorityReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PriorityReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F46D3220BB9FA20048E755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8F46D3420BB9FA20048E755 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		C8F46D3420BB9FA20048E755 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		C8F46D3720BB9FA20048E755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8F46D3920BB9FA20048E755 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8F46D3C20BB9FA20048E755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,6 +84,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C83C370520C356A900ED5901 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C8F46D3620BB9FA20048E755 /* Main.storyboard */,
+				C8F46D3B20BB9FA20048E755 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C8550A8A20C352710022B815 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C8F46D3420BB9FA20048E755 /* EventDetailViewController.swift */,
+				C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */,
+				C8550A8B20C352960022B815 /* MenuViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C8550A8D20C3529B0022B815 /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C8550A8E20C352B70022B815 /* MenuTableViewCell.swift */,
+				C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */,
+			);
+			path = "Table Cells";
+			sourceTree = "<group>";
+		};
+		C8550A9020C352CE0022B815 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8E9404020BCEAE200B3AD31 /* Event.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C8F46D2620BB9FA10048E755 = {
 			isa = PBXGroup;
 			children = (
@@ -103,14 +143,12 @@
 		C8F46D3120BB9FA20048E755 /* PriorityReminders */ = {
 			isa = PBXGroup;
 			children = (
-				C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */,
+				C83C370520C356A900ED5901 /* Storyboards */,
+				C8550A8A20C352710022B815 /* View Controllers */,
+				C8550A8D20C3529B0022B815 /* Table Cells */,
+				C8550A9020C352CE0022B815 /* Model */,
 				C8F46D3220BB9FA20048E755 /* AppDelegate.swift */,
-				C8F46D3620BB9FA20048E755 /* Main.storyboard */,
-				C8F46D3420BB9FA20048E755 /* EventViewController.swift */,
-				C8E9403E20BCEA9700B3AD31 /* EventTableViewController.swift */,
-				C8E9404020BCEAE200B3AD31 /* Event.swift */,
 				C8F46D3920BB9FA20048E755 /* Assets.xcassets */,
-				C8F46D3B20BB9FA20048E755 /* LaunchScreen.storyboard */,
 				C8F46D3E20BB9FA20048E755 /* Info.plist */,
 			);
 			path = PriorityReminders;
@@ -266,8 +304,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */,
-				C8F46D3520BB9FA20048E755 /* EventViewController.swift in Sources */,
-				C8E9403F20BCEA9700B3AD31 /* EventTableViewController.swift in Sources */,
+				C8550A8C20C352960022B815 /* MenuViewController.swift in Sources */,
+				C8550A8F20C352B70022B815 /* MenuTableViewCell.swift in Sources */,
+				C8F46D3520BB9FA20048E755 /* EventDetailViewController.swift in Sources */,
+				C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */,
 				C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */,
 				C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */,
 			);
