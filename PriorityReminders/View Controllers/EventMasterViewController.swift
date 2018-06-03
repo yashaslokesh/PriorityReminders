@@ -13,47 +13,11 @@ class EventMasterViewController: UITableViewController {
 
     var events = [Event]()
     
-    var menuViewController : MenuViewController!
-    
-    var menuShown : Bool = false
-    
-    @IBAction func menuButtonAction(_ sender: Any) {
-        
-        if menuShown {
-            // Remove menu if shown right now
-            UIView.animate(withDuration: 0.5, animations: {() -> Void in
-                self.menuViewController.view.frame = CGRect(x: -UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width * 5/8, height: UIScreen.main.bounds.height)
-            }, completion: { (finished) -> Void in
-                self.menuViewController.view.removeFromSuperview()
-                self.tableView.isUserInteractionEnabled = true
-            })
-        } else {
-            // Show menu if not shown right now
-            self.view.addSubview(menuViewController.view)
-            UIView.animate(withDuration: 0.5, animations: {() -> Void in
-                self.menuViewController.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 5/8, height: UIScreen.main.bounds.height)
-            }, completion: { (finished) -> Void in
-                self.tableView.isUserInteractionEnabled = false
-            })
-        }
-        
-        menuShown = !menuShown
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuShown = false
-        
-        // Bring up the menu view controller and set some initial values
-        self.menuViewController = self.storyboard?.instantiateViewController(withIdentifier: "Menu") as! MenuViewController
-        self.menuViewController.view.frame = CGRect(x: -UIScreen.main.bounds.width, y: 0, width: UIScreen.main.bounds.width * 5/8, height: UIScreen.main.bounds.height)
-        self.menuViewController.view.layer.shadowOpacity = 1.0
-        self.menuViewController.view.layer.shadowRadius = 10.0
-        self.addChildViewController(menuViewController)
-        
-        
+        // Add edit button
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         // If events from previous openings of the app are available, then add them to a local constant savedEvents which is then added to the current array of Events
         
