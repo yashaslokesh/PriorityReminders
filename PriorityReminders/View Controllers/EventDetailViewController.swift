@@ -32,12 +32,16 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     @IBAction func cancelEvent(_ sender: UIBarButtonItem) {
         
-        // Is true if the view controller presenting the detail is the UINavigationController, which occurs when the user presses the add button
-        let isPresentingAddEvent = presentingViewController is UINavigationController
+        // Is true if the view controller presenting the detail is the UITabBarController, which occurs when the user presses the add button
+        let isPresentingAddEvent = presentingViewController is UITabBarController
+        
+        print("Cancel request Received")
         
         if isPresentingAddEvent {
-            dismiss(animated: true, completion: nil)
+            print("Cancelling add event")
+            self.dismiss(animated: true, completion: nil)
         } else if let mainNavigationController = navigationController {
+            print("ShowDetail popped off stack")
             mainNavigationController.popViewController(animated: true)
         } else {
             fatalError("The EventViewController is not contained in a UINavigationController")
@@ -66,9 +70,8 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
         let endDateString : String = endDatePickerField.text!
         let endDate : Date = fullDateFormatter.date(from: endDateString)!
         let eventDescription : String = descriptionTextView.text ?? ""
-        let priority : Int = 0
         
-        event = Event(name: name, startDate: startDate, endDate: endDate, description: eventDescription, priority: priority)
+        event = Event(name: name, startDate: startDate, endDate: endDate, description: eventDescription)
         
         print("Successfully saved")
     }

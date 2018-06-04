@@ -178,9 +178,6 @@ class EventMasterViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        // Remove menu, we won't be using it after the view is unloaded
-        self.menuViewController.removeFromParentViewController()
-        
         switch segue.identifier ?? "" {
         case "AddEvent":
             os_log("Adding a new event.", log: OSLog.default, type: .debug)
@@ -211,15 +208,15 @@ class EventMasterViewController: UITableViewController {
     // Create sample events to populate the screen, when the app is first loaded
     
     private func createSampleEvents() {
-        guard let eventOne = Event(name: "Be Awesome", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Don't forget to be awesome everyday!", priority: 0) else {
+        guard let eventOne = Event(name: "Be Awesome", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Don't forget to be awesome everyday!") else {
             fatalError("eventOne Creation failure")
         }
         
-        guard let eventTwo = Event(name: "Eat Breakfast", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Eat breakfast everyday so you have energy in the mornings!", priority: 0) else {
+        guard let eventTwo = Event(name: "Eat Breakfast", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Eat breakfast everyday so you have energy in the mornings!") else {
             fatalError("eventTwo Creation failure")
         }
         
-        guard let eventThree = Event(name: "Change the World", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Go out and change the world, in any small way that you can...", priority: 0) else {
+        guard let eventThree = Event(name: "Change the World", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Go out and change the world, in any small way that you can...") else {
             fatalError("eventThree Creation Failure")
         }
 

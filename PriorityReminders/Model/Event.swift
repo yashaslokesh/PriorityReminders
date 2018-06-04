@@ -21,10 +21,9 @@ class Event : NSObject, NSCoding {
         
         let startDate = aDecoder.decodeObject(forKey: EventProperties.eventStartDate) as! Date
         let endDate = aDecoder.decodeObject(forKey: EventProperties.eventEndDate) as! Date
-        let priority = aDecoder.decodeInteger(forKey: EventProperties.eventPriority)
         let description = aDecoder.decodeObject(forKey: EventProperties.eventDescription) as? String
         
-        self.init(name: name, startDate: startDate, endDate: endDate, description: description, priority: priority)
+        self.init(name: name, startDate: startDate, endDate: endDate, description: description)
         
     }
     
@@ -34,7 +33,6 @@ class Event : NSObject, NSCoding {
         static let eventName = "name"
         static let eventStartDate = "startDate"
         static let eventEndDate = "endDate"
-        static let eventPriority = "priority"
         static let eventDescription = "description"
     }
     
@@ -43,7 +41,6 @@ class Event : NSObject, NSCoding {
     var eventName : String
     var eventStartDate : Date
     var eventEndDate : Date
-    var eventPriority : Int
     var eventDescription : String?
     
     //MARK: Local path for archiving Event instances
@@ -53,7 +50,7 @@ class Event : NSObject, NSCoding {
     
     //MARK: Class Instance Initializer
     
-    init?(name : String, startDate : Date, endDate : Date, description : String?, priority : Int) {
+    init?(name : String, startDate : Date, endDate : Date, description : String?) {
         
         guard endDate > startDate else {
             return nil
@@ -62,7 +59,6 @@ class Event : NSObject, NSCoding {
         self.eventName = name
         self.eventStartDate = startDate
         self.eventEndDate = endDate
-        self.eventPriority = priority
         self.eventDescription = description
     }
     
@@ -73,7 +69,6 @@ class Event : NSObject, NSCoding {
         aCoder.encode(eventName, forKey: EventProperties.eventName)
         aCoder.encode(eventStartDate, forKey: EventProperties.eventStartDate)
         aCoder.encode(eventEndDate, forKey: EventProperties.eventEndDate)
-        aCoder.encode(eventPriority, forKey: EventProperties.eventPriority)
         aCoder.encode(eventDescription, forKey: EventProperties.eventDescription)
     }
     
