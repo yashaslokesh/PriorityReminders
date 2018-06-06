@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C83C370720C4464400ED5901 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370620C4464400ED5901 /* SettingsTableViewController.swift */; };
 		C83C370920C44BE200ED5901 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */; };
+		C8C907AE20C6F4AB0099CEFF /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */; };
+		C8C907B020C6F4C30099CEFF /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */; };
+		C8C907B220C728940099CEFF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907B120C728940099CEFF /* Notification.swift */; };
 		C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */; };
 		C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */; };
 		C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9404020BCEAE200B3AD31 /* Event.swift */; };
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		C83C370620C4464400ED5901 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = "PriorityReminders/View Controllers/SettingsTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = "PriorityReminders/Table Cells/SettingsTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
+		C8C907B120C728940099CEFF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMasterViewController.swift; sourceTree = "<group>"; };
 		C8E9404020BCEAE200B3AD31 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 		C8550A8A20C352710022B815 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */,
 				C83C370620C4464400ED5901 /* SettingsTableViewController.swift */,
 				C8F46D3420BB9FA20048E755 /* EventDetailViewController.swift */,
 				C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */,
@@ -106,6 +113,7 @@
 		C8550A8D20C3529B0022B815 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */,
 				C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */,
 				C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */,
 			);
@@ -116,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				C8E9404020BCEAE200B3AD31 /* Event.swift */,
+				C8C907B120C728940099CEFF /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,13 +312,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C907AE20C6F4AB0099CEFF /* NotificationsTableViewCell.swift in Sources */,
 				C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */,
 				C8F46D3520BB9FA20048E755 /* EventDetailViewController.swift in Sources */,
 				C83C370720C4464400ED5901 /* SettingsTableViewController.swift in Sources */,
 				C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */,
 				C83C370920C44BE200ED5901 /* SettingsTableViewCell.swift in Sources */,
+				C8C907B220C728940099CEFF /* Notification.swift in Sources */,
 				C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */,
 				C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */,
+				C8C907B020C6F4C30099CEFF /* NotificationsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +497,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KVSXQ5FA5S;
 				INFOPLIST_FILE = PriorityReminders/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,6 +516,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KVSXQ5FA5S;
 				INFOPLIST_FILE = PriorityReminders/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

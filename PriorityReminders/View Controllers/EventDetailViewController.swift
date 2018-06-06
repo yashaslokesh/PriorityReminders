@@ -8,8 +8,9 @@
 
 import UIKit
 import os.log
+import UserNotifications
 
-class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class EventDetailViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: Properties
     
@@ -17,6 +18,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventNameField: UITextField!
     
+    @IBOutlet weak var datesWarning: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
     var event : Event?
@@ -28,24 +30,29 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var startDatePickerField: UITextField!
     @IBOutlet weak var endDatePickerField: UITextField!
     
+    // Date Picker
+    
     //MARK: Actions
     
     @IBAction func cancelEvent(_ sender: UIBarButtonItem) {
         
-        // Is true if the view controller presenting the detail is the UITabBarController, which occurs when the user presses the add button
+//         Is true if the view controller presenting the detail is the UITabBarController, which occurs when the user presses the add button
         let isPresentingAddEvent = presentingViewController is UITabBarController
-        
+
         print("Cancel request Received")
-        
+
         if isPresentingAddEvent {
+            // If adding event
+
             print("Cancelling add event")
             self.dismiss(animated: true, completion: nil)
         } else if let mainNavigationController = navigationController {
-            print("ShowDetail popped off stack")
+            // If editing event
             mainNavigationController.popViewController(animated: true)
         } else {
             fatalError("The EventViewController is not contained in a UINavigationController")
         }
+        
     }
     
     //MARK: Navigation
@@ -58,20 +65,17 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
             return
         }
         
-        let fullDateFormatter = DateFormatter()
-        fullDateFormatter.dateFormat = "MMMM dd, yyyy"
-        
         // ?? asks if a UITextField.text has a value, and if it does, it returns that value. If it does not, it returns the String value placed after the ??
         
-        let name : String = eventNameField.text ?? ""
+        let name : String = eventNameField.text!
         let startDateString : String = startDatePickerField.text!
-        let startDate : Date = fullDateFormatter.date(from: startDateString)!
+        let startDate : Date = dateFormatter.date(from: startDateString)!
         
         let endDateString : String = endDatePickerField.text!
-        let endDate : Date = fullDateFormatter.date(from: endDateString)!
-        let eventDescription : String = descriptionTextView.text ?? ""
+        let endDate : Date = dateFormatter.date(from: endDateString)!
+        let description : String = descriptionTextView.text ?? ""
         
-        event = Event(name: name, startDate: startDate, endDate: endDate, description: eventDescription)
+        event = Event(name: name, startDate: startDate, endDate: endDate, description: description)
         
         print("Successfully saved")
     }
@@ -81,6 +85,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        datesWarning.isHidden = true
         
         // Set delegate for all text fields, handle user input using this delegate
         self.eventNameField.delegate = self
@@ -140,6 +145,15 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
         } else if endDatePickerField.isFirstResponder {
             endDatePickerField.text = dateFormatter.string(from: date)
         }
+        
+        if let endDateString = endDatePickerField.text {
+            if dateFormatter.date(from: endDateString)! < dateFormatter.date(from: startDatePickerField.text!)! {
+                datesWarning.isHidden = false
+            } else {
+                datesWarning.isHidden = true
+            }
+        }
+        
     }
     
     @objc func doneSelection(_ sender : UIBarButtonItem) {
@@ -151,10 +165,6 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
             descriptionTextView.resignFirstResponder()
         }
     }
-    
-    //MARK: UITextViewDelegates
-    
-    
     
     //MARK: UITextFieldDelegates
     
@@ -172,6 +182,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButton()
         navigationItem.title = eventNameField.text
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -190,7 +201,5 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UITextVi
         saveEventButton.isEnabled = !(nameText.isEmpty || endDateText.isEmpty)
         
     }
-
-
+    
 }
-

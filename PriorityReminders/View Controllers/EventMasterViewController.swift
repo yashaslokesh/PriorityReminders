@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import os.log
 
 class EventMasterViewController: UITableViewController {
@@ -17,7 +18,7 @@ class EventMasterViewController: UITableViewController {
         super.viewDidLoad()
         
         // Add edit button
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem
         
         // If events from previous openings of the app are available, then add them to a local constant savedEvents which is then added to the current array of Events
         
@@ -102,7 +103,6 @@ class EventMasterViewController: UITableViewController {
     
     // MARK: Actions
     
-    
     // Receives an action from the eventViewController (the detail) and accordingly sets up the table scene
     @IBAction func unwindToEventList(sender: UIStoryboardSegue) {
         if let source = sender.source as? EventDetailViewController, let event = source.event {
@@ -120,9 +120,24 @@ class EventMasterViewController: UITableViewController {
             tableView.reloadData()
             // Save the Events whenever an event is added or modified (or cancel is clicked)
             self.saveEvents()
+            
+            let content = UNMutableNotificationContent()
+            
+            content.body = "\(event.eventName) is coming up in \(event.daysLeft()) more days"
+            
+            let percentage : Double = event.percentageDone()
+            
+            var timeInterval : Int = 0
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: event.eventName, content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            
+            
         }
     }
-    
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -167,7 +182,6 @@ class EventMasterViewController: UITableViewController {
     }
     */
 
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

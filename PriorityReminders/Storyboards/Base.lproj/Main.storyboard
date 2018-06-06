@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CCt-m3-wAB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CCt-m3-wAB">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -88,11 +88,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Reminders" id="CjR-Ii-3tk">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="U3h-pb-pGX">
-                            <connections>
-                                <action selector="menuButtonAction:" destination="NtG-W5-uP3" id="M2t-0q-4qL"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5Fv-6w-MBb">
                             <connections>
                                 <segue destination="h5Y-zo-Hm9" kind="presentation" identifier="AddEvent" id="tIL-Y4-OdS"/>
@@ -166,6 +161,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                     </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Date should come before" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLG-LY-8Nh">
+                                        <rect key="frame" x="126" y="157" width="241" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.06974860209" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="7Tk-7g-WjS" firstAttribute="leading" secondItem="ejk-uF-cBi" secondAttribute="leading" id="5y1-PO-WrS"/>
@@ -217,6 +219,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datesWarning" destination="eLG-LY-8Nh" id="D9T-ZJ-pjX"/>
                         <outlet property="descriptionTextView" destination="2qw-F2-gcN" id="s3E-PS-SdA"/>
                         <outlet property="endDatePickerField" destination="ejk-uF-cBi" id="9gK-yf-nv3"/>
                         <outlet property="eventNameField" destination="HNs-HE-YGM" id="aI0-ef-g6o"/>
@@ -228,7 +231,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="78n-oA-7Wd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4022" y="344"/>
+            <point key="canvasLocation" x="4021.5999999999999" y="343.5960591133005"/>
         </scene>
         <!--Events-->
         <scene sceneID="gxD-rf-ZSe">
@@ -273,6 +276,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="CCt-m3-wAB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ut6-ri-A1f">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -331,6 +335,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="settingOptionLabel" destination="aQo-HY-ndQ" id="AaH-tL-QUQ"/>
+                                    <segue destination="sQc-Je-RIo" kind="show" identifier="ShowNotificationSettings" id="irW-Xd-b7w"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -344,6 +349,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCI-Te-xZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2006" y="-948"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="Atl-Wz-cYv">
+            <objects>
+                <tableViewController id="sQc-Je-RIo" customClass="NotificationsTableViewController" customModule="PriorityReminders" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ACn-47-Exe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationSettingsCell" id="dq4-PX-aTQ" customClass="NotificationsTableViewCell" customModule="PriorityReminders" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dq4-PX-aTQ" id="rha-Fo-cMt">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUp-wR-Slv">
+                                            <rect key="frame" x="16" y="11" width="167" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZ7-ML-kU2">
+                                            <rect key="frame" x="191" y="7" width="93" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wzI-59-qnW">
+                                            <rect key="frame" x="292" y="7" width="67" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="notificationSettingLabel" destination="eUp-wR-Slv" id="dCQ-vs-2aY"/>
+                                    <outlet property="numberTextField" destination="NZ7-ML-kU2" id="W5B-7I-o8b"/>
+                                    <outlet property="timeSettingTextField" destination="wzI-59-qnW" id="fb2-HU-Jk8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sQc-Je-RIo" id="a1d-8K-vvt"/>
+                            <outlet property="delegate" destination="sQc-Je-RIo" id="vYr-Yw-s0S"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Notifications" id="obL-GA-YkU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QhZ-Ve-mC9"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="QhZ-Ve-mC9" id="BQx-cg-9OJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vxt-GU-EJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4022" y="-948"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

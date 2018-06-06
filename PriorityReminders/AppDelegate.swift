@@ -7,16 +7,36 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
-
+    // We ask for permission to send notifications, first
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge]) { (authorized : Bool, error) in
+            
+        }
+        
+        UNUserNotificationCenter.current().delegate = self
         return true
+    }
+    
+    
+    // This function asks what to do if the notification appears when app is in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(UNNotificationPresentationOptions.alert)
+    }
+    
+    // This function asks what to do when a certain response on a notification is given, like when a custom action button is clicked
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
