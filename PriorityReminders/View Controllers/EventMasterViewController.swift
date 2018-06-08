@@ -10,8 +10,8 @@ import UIKit
 import UserNotifications
 import os.log
 
-class EventMasterViewController: UITableViewController {
-
+class EventMasterViewController: UITableViewController, EventTableViewCellDelegate {
+    
     var events = [Event]()
     
     override func viewDidLoad() {
@@ -73,32 +73,57 @@ class EventMasterViewController: UITableViewController {
         
         let percentage : Double = (event.percentageDone() > 100.0 ? 100.0 : event.percentageDone())
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        
         cell.nameLabel.text = event.eventName
-        cell.endDateLabel.text = dateFormatter.string(from: event.eventEndDate)
-        cell.daysLeftNumberLabel.text = "\(event.daysLeft() < 0 ? 0 : event.daysLeft())"
-        cell.timeDoneLabel.text = "\(percentage)%"
-
+        
         if percentage >= 75.0 {
-            cell.backgroundColor = UIColor.red
-            for UILabel in cell.labelsArray {
-                UILabel.textColor = UIColor.white
-            }
+            cell.setLabelsTextColor(color: UIColor.red)
+        } else if percentage >= 50.0 {
+            cell.setLabelsTextColor(color: UIColor.yellow)
         } else {
-            if percentage >= 50.0 {
-                cell.backgroundColor = UIColor.yellow
-            } else {
-                cell.backgroundColor = UIColor.white
-            }
-            for UILabel in cell.labelsArray {
-                UILabel.textColor = UIColor.black
-            }
+            cell.setLabelsTextColor(color: UIColor.black)
         }
         
+        let daysLeft : Int = event.daysLeft() < 0 ? 0 : event.daysLeft()
+        
+        cell.accessoryInfoLabel.text = "Days Left"
+        cell.accessoryInfoDisplay.setTitle("\(daysLeft)", for: .normal)
+        
+        cell.delegate = self
+        
         return cell
+    }
+    
+    func didTapButton(_ cell: EventTableViewCell) {
+        
+        let event = events[(self.tableView.indexPath(for: cell)?.row)!]
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "MMM dd yy"
+        let startDate : String = dateFormatter.string(from: event.eventStartDate)
+        let endDate : String = dateFormatter.string(from: event.eventEndDate)
+        let daysLeft : Int = event.daysLeft() < 0 ? 0 : event.daysLeft()
+        
+        let accessoryLabelText : String = cell.accessoryInfoLabel.text!
+        
+        cell.accessoryInfoLabel.textChangeTransition(0.5)
+        
+        switch accessoryLabelText {
+        case "Days Left":
+//            cell.setAccessoryInfoLabelText(text: "Start Date")
+            cell.accessoryInfoLabel.text = "Start Date"
+            cell.accessoryInfoDisplay.setTitle(startDate, for: UIControlState.normal)
+        case "Start Date":
+//            cell.setAccessoryInfoLabelText(text: "End Date")
+            cell.accessoryInfoLabel.text = "End Date"
+            cell.accessoryInfoDisplay.setTitle(endDate, for: UIControlState.normal)
+        case "End Date":
+//            cell.setAccessoryInfoLabelText(text: "Days Left")
+            cell.accessoryInfoLabel.text = "Days Left"
+            cell.accessoryInfoDisplay.setTitle("\(daysLeft)", for: UIControlState.normal)
+        default:
+            fatalError("Fix the Accessory Info Label")
+        }
     }
     
     // MARK: Actions
@@ -127,16 +152,59 @@ class EventMasterViewController: UITableViewController {
             
             let percentage : Double = event.percentageDone()
             
-            var timeInterval : Int = 0
+            var timeInterval : Double = 0.0
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            let defaults = UserDefaults.standard
+            
+//            defaults.set(2, forKey: "lowestPriorityFrequency")
+//            defaults.set(1, forKey: "mediumPriorityFrequency")
+//            defaults.set(1, forKey: "highPriorityFrequency")
+//            defaults.set("Weeks", forKey: "lowestPriorityUnits")
+//            defaults.set("Weeks", forKey: "mediumPriorityUnits")
+//            defaults.set("Days", forKey: "highPriorityUnits")
+            
+            if percentage >= 75.0 {
+                let frequency = defaults.integer(forKey: "highPriorityFrequency")
+                let units = defaults.string(forKey: "highPriorityUnits")
+                timeInterval = self.convertTimeIntervalToSeconds(frequency: frequency, units: units!)
+            } else if percentage >= 50.0 {
+                let frequency = defaults.integer(forKey: "mediumPriorityFrequency")
+                let units = defaults.string(forKey: "mediumPriorityUnits")
+                timeInterval = self.convertTimeIntervalToSeconds(frequency: frequency, units: units!)
+            } else {
+                let frequency = defaults.integer(forKey: "lowestPriorityFrequency")
+                let units = defaults.string(forKey: "lowestPriorityUnits")
+                timeInterval = self.convertTimeIntervalToSeconds(frequency: frequency, units: units!)
+            }
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
             
             let request = UNNotificationRequest(identifier: event.eventName, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             
-            
         }
+    }
+    
+    func convertTimeIntervalToSeconds(frequency : Int, units : String) -> Double {
+        
+        var timeInterval : Double = 0.0
+        let freq : Double = Double(frequency)
+        
+        switch units {
+        case "Hours":
+            timeInterval = freq * 60 * 60
+        case "Days":
+            timeInterval = freq * 60 * 60 * 24
+        case "Weeks":
+            timeInterval = freq * 60 * 60 * 24 * 7
+        case "Months":
+            timeInterval = freq * 60 * 60 * 24 * 30.44
+        default:
+            fatalError("Unsupported time units")
+        }
+        
+        return timeInterval
     }
 
     // Override to support conditional editing of the table view.

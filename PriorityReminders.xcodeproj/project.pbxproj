@@ -12,6 +12,7 @@
 		C8C907AE20C6F4AB0099CEFF /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */; };
 		C8C907B020C6F4C30099CEFF /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */; };
 		C8C907B220C728940099CEFF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907B120C728940099CEFF /* Notification.swift */; };
+		C8C907B420C87C6A0099CEFF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907B320C87C690099CEFF /* Extensions.swift */; };
 		C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */; };
 		C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */; };
 		C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9404020BCEAE200B3AD31 /* Event.swift */; };
@@ -47,6 +48,7 @@
 		C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		C8C907B120C728940099CEFF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		C8C907B320C87C690099CEFF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMasterViewController.swift; sourceTree = "<group>"; };
 		C8E9404020BCEAE200B3AD31 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		C8F46D3120BB9FA20048E755 /* PriorityReminders */ = {
 			isa = PBXGroup;
 			children = (
+				C8C907B320C87C690099CEFF /* Extensions.swift */,
 				C83C370520C356A900ED5901 /* Storyboards */,
 				C8550A8A20C352710022B815 /* View Controllers */,
 				C8550A8D20C3529B0022B815 /* Table Cells */,
@@ -321,6 +324,7 @@
 				C8C907B220C728940099CEFF /* Notification.swift in Sources */,
 				C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */,
 				C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */,
+				C8C907B420C87C6A0099CEFF /* Extensions.swift in Sources */,
 				C8C907B020C6F4C30099CEFF /* NotificationsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

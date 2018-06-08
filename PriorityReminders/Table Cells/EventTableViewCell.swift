@@ -8,33 +8,46 @@
 
 import UIKit
 
+protocol EventTableViewCellDelegate : class {
+    func didTapButton(_ cell : EventTableViewCell)
+}
+
 class EventTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var daysLeftLabel: UILabel!
-    @IBOutlet weak var daysLeftNumberLabel: UILabel!
-    @IBOutlet weak var timeDoneLabel: UILabel!
-    @IBOutlet weak var doneLabel: UILabel!
-    @IBOutlet weak var endDateLabel: UILabel!
-    
-    var labelsArray = [UILabel]()
+    @IBOutlet weak var accessoryInfoLabel: UILabel!
+    @IBOutlet weak var accessoryInfoDisplay: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        labelsArray.append(nameLabel)
-        labelsArray.append(daysLeftLabel)
-        labelsArray.append(daysLeftNumberLabel)
-        labelsArray.append(timeDoneLabel)
-        labelsArray.append(doneLabel)
-        labelsArray.append(endDateLabel)
+        let color = accessoryInfoDisplay.currentTitleColor
+        
+        accessoryInfoDisplay.layer.borderWidth = 1.0
+        accessoryInfoDisplay.layer.cornerRadius = 10.0
+        accessoryInfoDisplay.layer.borderColor = color.cgColor
+        accessoryInfoDisplay.titleColor(for: .normal)
+        nameLabel.font = UIFont(name: "Avenir-Medium", size: 25.0)
+        accessoryInfoLabel.font = UIFont(name: "Avenir-Medium", size: 17.0)
+        accessoryInfoDisplay.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 22.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    weak var delegate : EventTableViewCellDelegate?
+    @IBAction func accessoryInfoDisplayAction(_ sender: Any) {
+        delegate?.didTapButton(self)
+    }
+    
+    
+    func setLabelsTextColor(color : UIColor) -> Void {
+        nameLabel.textColor = color
+        accessoryInfoLabel.textColor = color
     }
 
 }
