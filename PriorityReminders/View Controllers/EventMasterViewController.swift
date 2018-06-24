@@ -78,7 +78,7 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         if percentage >= 75.0 {
             cell.setLabelsTextColor(color: UIColor.red)
         } else if percentage >= 50.0 {
-            cell.setLabelsTextColor(color: UIColor.yellow)
+            cell.setLabelsTextColor(color: UIColor.orange)
         } else {
             cell.setLabelsTextColor(color: UIColor.black)
         }
