@@ -53,7 +53,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="accessoryInfoDisplay" destination="HFM-bX-QZo" id="6ZK-hk-vui"/>
+                                    <outlet property="accessoryInfoButton" destination="HFM-bX-QZo" id="6ZK-hk-vui"/>
                                     <outlet property="accessoryInfoLabel" destination="yYh-xI-9wm" id="D2z-TW-hUl"/>
                                     <outlet property="nameLabel" destination="fbr-l4-KeP" id="6Wh-5g-4Op"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="W2Z-ew-SQo"/>

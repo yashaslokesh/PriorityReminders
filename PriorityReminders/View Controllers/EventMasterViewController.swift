@@ -86,7 +86,7 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         let daysLeft : Int = event.daysLeft() < 0 ? 0 : event.daysLeft()
         
         cell.accessoryInfoLabel.text = "Days Left"
-        cell.accessoryInfoDisplay.setTitle("\(daysLeft)", for: .normal)
+        cell.accessoryInfoButton.setTitle("\(daysLeft)", for: .normal)
         
         cell.delegate = self
         
@@ -112,15 +112,15 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         case "Days Left":
 //            cell.setAccessoryInfoLabelText(text: "Start Date")
             cell.accessoryInfoLabel.text = "Start Date"
-            cell.accessoryInfoDisplay.setTitle(startDate, for: UIControlState.normal)
+            cell.accessoryInfoButton.setTitle(startDate, for: UIControlState.normal)
         case "Start Date":
 //            cell.setAccessoryInfoLabelText(text: "End Date")
             cell.accessoryInfoLabel.text = "End Date"
-            cell.accessoryInfoDisplay.setTitle(endDate, for: UIControlState.normal)
+            cell.accessoryInfoButton.setTitle(endDate, for: UIControlState.normal)
         case "End Date":
 //            cell.setAccessoryInfoLabelText(text: "Days Left")
             cell.accessoryInfoLabel.text = "Days Left"
-            cell.accessoryInfoDisplay.setTitle("\(daysLeft)", for: UIControlState.normal)
+            cell.accessoryInfoButton.setTitle("\(daysLeft)", for: UIControlState.normal)
         default:
             fatalError("Fix the Accessory Info Label")
         }

@@ -16,21 +16,21 @@ class EventTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var accessoryInfoLabel: UILabel!
-    @IBOutlet weak var accessoryInfoDisplay: UIButton!
+    @IBOutlet weak var accessoryInfoButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        let color = accessoryInfoDisplay.currentTitleColor
+        let color = accessoryInfoButton.currentTitleColor
         
-        accessoryInfoDisplay.layer.borderWidth = 1.0
-        accessoryInfoDisplay.layer.cornerRadius = 10.0
-        accessoryInfoDisplay.layer.borderColor = color.cgColor
-        accessoryInfoDisplay.titleColor(for: .normal)
+        accessoryInfoButton.layer.borderWidth = 1.0
+        accessoryInfoButton.layer.cornerRadius = 10.0
+        accessoryInfoButton.layer.borderColor = color.cgColor
+        accessoryInfoButton.titleColor(for: .normal)
         nameLabel.font = UIFont(name: "Avenir-Medium", size: 25.0)
         accessoryInfoLabel.font = UIFont(name: "Avenir-Medium", size: 17.0)
-        accessoryInfoDisplay.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 22.0)
+        accessoryInfoButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 22.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
