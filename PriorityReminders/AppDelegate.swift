@@ -18,17 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        let lowestPrioritySetting = Notification(name: "Lowest Priority", frequency: [2 : "Weeks"])
-//        let mediumPrioritySetting = Notification(name: "Medium Priority", frequency: [1 : "Weeks"])
-//        let highestPriority = Notification(name: "Highest Priority", frequency: [1 : "Days"])
-        
         let defaults = UserDefaults.standard
         if !hasAppAlreadyLaunchedOnce() {
             defaults.set(2, forKey: "lowestPriorityFrequency")
-            defaults.set(1, forKey: "mediumPriorityFrequency")
-            defaults.set(1, forKey: "highPriorityFrequency")
             defaults.set("Weeks", forKey: "lowestPriorityUnits")
+            
+            defaults.set(1, forKey: "mediumPriorityFrequency")
             defaults.set("Weeks", forKey: "mediumPriorityUnits")
+            
+            defaults.set(1, forKey: "highPriorityFrequency")
             defaults.set("Days", forKey: "highPriorityUnits")
         }
         

@@ -146,38 +146,30 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
             // Save the Events whenever an event is added or modified (or cancel is clicked)
             self.saveEvents()
             
-            let content = UNMutableNotificationContent()
-            
-            content.body = "\(event.eventName) is coming up in \(event.daysLeft()) more days"
-            
             let percentage : Double = event.percentageDone()
             
-            var timeInterval : Double = 0.0
+            var date : DateComponents
             
             let defaults = UserDefaults.standard
             
-//            defaults.set(2, forKey: "lowestPriorityFrequency")
-//            defaults.set(1, forKey: "mediumPriorityFrequency")
-//            defaults.set(1, forKey: "highPriorityFrequency")
-//            defaults.set("Weeks", forKey: "lowestPriorityUnits")
-//            defaults.set("Weeks", forKey: "mediumPriorityUnits")
-//            defaults.set("Days", forKey: "highPriorityUnits")
-            
             if percentage >= 75.0 {
                 let frequency = defaults.integer(forKey: "highPriorityFrequency")
-                let units = defaults.string(forKey: "highPriorityUnits")
-                timeInterval = self.convertTimeIntervalToSeconds(frequency: frequency, units: units!)
+                let units = defaults.string(forKey: "highPriorityUnits")!
+                date = getCalendarNotificationTimeInterval(frequency: frequency, units: units)
             } else if percentage >= 50.0 {
                 let frequency = defaults.integer(forKey: "mediumPriorityFrequency")
-                let units = defaults.string(forKey: "mediumPriorityUnits")
-                timeInterval = self.convertTimeIntervalToSeconds(frequency: frequency, units: units!)
+                let units = defaults.string(forKey: "mediumPriorityUnits")!
+                date = getCalendarNotificationTimeInterval(frequency: frequency, units: units)
             } else {
                 let frequency = defaults.integer(forKey: "lowestPriorityFrequency")
-                let units = defaults.string(forKey: "lowestPriorityUnits")
-                timeInterval = self.convertTimeIntervalToSeconds(frequency: frequency, units: units!)
+                let units = defaults.string(forKey: "lowestPriorityUnits")!
+                date = getCalendarNotificationTimeInterval(frequency: frequency, units: units)
             }
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            let content = UNMutableNotificationContent()
+            content.body = "\(event.eventName) is coming up in \(event.daysLeft()) more days"
+            
+            let trigger = UNCalendarNotificationTrigger
             
             let request = UNNotificationRequest(identifier: event.eventName, content: content, trigger: trigger)
             
@@ -186,25 +178,17 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         }
     }
     
-    func convertTimeIntervalToSeconds(frequency : Int, units : String) -> Double {
-        
-        var timeInterval : Double = 0.0
-        let freq : Double = Double(frequency)
-        
+    func getCalendarNotificationTimeInterval(frequency : Int, units : String) -> DateComponents {
+        var date = DateComponents()
+//        let timeSettings = ["Hours","Days","Weeks","Months"]
         switch units {
         case "Hours":
-            timeInterval = freq * 60 * 60
-        case "Days":
-            timeInterval = freq * 60 * 60 * 24
-        case "Weeks":
-            timeInterval = freq * 60 * 60 * 24 * 7
-        case "Months":
-            timeInterval = freq * 60 * 60 * 24 * 30.44
+            <#code#>
         default:
-            fatalError("Unsupported time units")
+            fatalError("Unknown notification frequency set")
         }
         
-        return timeInterval
+        return date
     }
 
     // Override to support conditional editing of the table view.
