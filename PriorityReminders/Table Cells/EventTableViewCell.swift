@@ -23,6 +23,7 @@ class EventTableViewCell: UITableViewCell {
         // Initialization code
         
         let color = accessoryInfoButton.currentTitleColor
+        print(color)
         
         accessoryInfoButton.layer.borderWidth = 1.0
         accessoryInfoButton.layer.cornerRadius = 10.0

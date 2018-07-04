@@ -99,7 +99,9 @@ class Event : NSObject, NSCoding {
     }
     
     static func notificationDateCalculator( frequency : Int, units : String) -> DateComponents {
+        var date = DateComponents()
         
+        return date
     }
     
 }

@@ -10,16 +10,15 @@ import UIKit
 import os.log
 import UserNotifications
 
-class EventDetailViewController: UIViewController, UITextFieldDelegate {
+class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //MARK: Properties
     
     @IBOutlet weak var saveEventButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventNameField: UITextField!
-    
-    @IBOutlet weak var datesWarning: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var eventImage: UIImageView!
     
     var event : Event?
     
@@ -32,7 +31,17 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate {
     
     // Date Picker
     
-    //MARK: Actions
+    //MARK: Storybard Actions
+    
+    @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
+        checkForAndResignFirstResponder()
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+    }
     
     @IBAction func cancelEvent(_ sender: UIBarButtonItem) {
         
@@ -85,7 +94,8 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        datesWarning.isHidden = true
+        eventImage.isUserInteractionEnabled = true
+        eventImage.frame.size.width = eventImage.image!.size.width
         
         // Set delegate for all text fields, handle user input using this delegate
         self.eventNameField.delegate = self
@@ -146,24 +156,10 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate {
             endDatePickerField.text = dateFormatter.string(from: date)
         }
         
-        if let endDateString = endDatePickerField.text {
-            if dateFormatter.date(from: endDateString)! < dateFormatter.date(from: startDatePickerField.text!)! {
-                datesWarning.isHidden = false
-            } else {
-                datesWarning.isHidden = true
-            }
-        }
-        
     }
     
     @objc func doneSelection(_ sender : UIBarButtonItem) {
-        if startDatePickerField.isFirstResponder {
-            startDatePickerField.resignFirstResponder()
-        } else if endDatePickerField.isFirstResponder {
-            endDatePickerField.resignFirstResponder()
-        } else if descriptionTextView.isFirstResponder {
-            descriptionTextView.resignFirstResponder()
-        }
+        checkForAndResignFirstResponder()
     }
     
     //MARK: UITextFieldDelegates
@@ -184,6 +180,24 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate {
         navigationItem.title = eventNameField.text
         
     }
+    
+    //MARK: ImagePickerController delegate methods
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        guard let selected = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Wrong type of image or file, was of type: \(info)")
+        }
+        
+        eventImage.image = selected
+        eventImage.frame.size.width = selected.size.width
+        dismiss(animated: true, completion: nil)
+        print("Event image size is \(eventImage.frame.size)")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -199,7 +213,18 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate {
         let endDateText : String = endDatePickerField.text!
         
         saveEventButton.isEnabled = !(nameText.isEmpty || endDateText.isEmpty)
-        
+    }
+    
+    func checkForAndResignFirstResponder() {
+        if eventNameField.isFirstResponder {
+            eventNameField.resignFirstResponder()
+        } else if descriptionTextView.isFirstResponder {
+            descriptionTextView.resignFirstResponder()
+        } else if startDatePickerField.isFirstResponder {
+            startDatePickerField.resignFirstResponder()
+        } else if endDatePickerField.isFirstResponder {
+            endDatePickerField.resignFirstResponder()
+        }
     }
     
 }

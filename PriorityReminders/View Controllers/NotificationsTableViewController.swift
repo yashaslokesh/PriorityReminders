@@ -13,7 +13,7 @@ class NotificationsTableViewController: UITableViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    var notifications = [Notification]()
+    var notifications = [Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +23,6 @@ class NotificationsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        if let savedSettings = self.loadNotificationSettings() {
-            notifications += savedSettings
-        } else {
-            self.createDefaultNotificationSettings()
-        }
         
         tableView.allowsSelection = false
     }
@@ -40,18 +34,18 @@ class NotificationsTableViewController: UITableViewController {
 
     // MARK: - Table view data source and other methods
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return notifications[section].name
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return notifications.count
+        return 1;
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return notifications.count
     }
 
     
@@ -64,11 +58,6 @@ class NotificationsTableViewController: UITableViewController {
         }
 
         // Configure the cell...
-        
-        let notification = notifications[indexPath.section]
-        
-//        cell.setNotificationSettingLabel(name: section)
-        cell.notificationSettingLabel.text = notification.name
 
         return cell
     }
@@ -127,30 +116,6 @@ class NotificationsTableViewController: UITableViewController {
 //        }
 //
 //    }
-    
-    func createDefaultNotificationSettings() -> Void {
-        let lowestPrioritySetting = Notification(name: "Lowest Priority", frequency: [2 : "Weeks"])
-        let mediumPrioritySetting = Notification(name: "Medium Priority", frequency: [1 : "Weeks"])
-        let highestPriority = Notification(name: "Highest Priority", frequency: [1 : "Days"])
-        
-        notifications += [lowestPrioritySetting, mediumPrioritySetting, highestPriority]
-    }
-    
-    private func saveNotificationSettings() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(notifications, toFile: Notification.ArchivingURL.path)
-        
-        if isSuccessfulSave {
-            os_log("Settings successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save settings...", log: OSLog.default, type: .error)
-        }
-    }
-    
-    // Use NSKeyedUnarchiver to unarchive the optional Events array from memory with the path specified in the Event class
-    
-    private func loadNotificationSettings() -> [Notification]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Notification.ArchivingURL.path) as? [Notification]
-    }
     
 
 }
