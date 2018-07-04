@@ -155,40 +155,27 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
             if percentage >= 75.0 {
                 let frequency = defaults.integer(forKey: "highPriorityFrequency")
                 let units = defaults.string(forKey: "highPriorityUnits")!
-                date = getCalendarNotificationTimeInterval(frequency: frequency, units: units)
+                date = Event.notificationDateCalculator(frequency: frequency, units: units)
             } else if percentage >= 50.0 {
                 let frequency = defaults.integer(forKey: "mediumPriorityFrequency")
                 let units = defaults.string(forKey: "mediumPriorityUnits")!
-                date = getCalendarNotificationTimeInterval(frequency: frequency, units: units)
+                date = Event.notificationDateCalculator(frequency: frequency, units: units)
             } else {
                 let frequency = defaults.integer(forKey: "lowestPriorityFrequency")
                 let units = defaults.string(forKey: "lowestPriorityUnits")!
-                date = getCalendarNotificationTimeInterval(frequency: frequency, units: units)
+                date = Event.notificationDateCalculator(frequency: frequency, units: units)
             }
             
             let content = UNMutableNotificationContent()
             content.body = "\(event.eventName) is coming up in \(event.daysLeft()) more days"
             
-            let trigger = UNCalendarNotificationTrigger
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
             
             let request = UNNotificationRequest(identifier: event.eventName, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             
         }
-    }
-    
-    func getCalendarNotificationTimeInterval(frequency : Int, units : String) -> DateComponents {
-        var date = DateComponents()
-//        let timeSettings = ["Hours","Days","Weeks","Months"]
-        switch units {
-        case "Hours":
-            <#code#>
-        default:
-            fatalError("Unknown notification frequency set")
-        }
-        
-        return date
     }
 
     // Override to support conditional editing of the table view.

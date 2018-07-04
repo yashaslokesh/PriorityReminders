@@ -98,4 +98,8 @@ class Event : NSObject, NSCoding {
         return percentage ?? 0.00
     }
     
+    static func notificationDateCalculator( frequency : Int, units : String) -> DateComponents {
+        
+    }
+    
 }
