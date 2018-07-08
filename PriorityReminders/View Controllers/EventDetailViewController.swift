@@ -194,7 +194,8 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         }
         
         eventImage.image = selected
-        eventImage.frame.size.width = selected.size.width
+//        eventImage.frame.size.width = self.view.frame.size.width
+        eventImage.contentMode = .scaleAspectFit
         dismiss(animated: true, completion: nil)
         print("Event image size is \(eventImage.frame.size)")
     }
