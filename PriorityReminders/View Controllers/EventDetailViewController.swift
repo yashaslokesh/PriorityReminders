@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import UserNotifications
 
-class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     //MARK: Properties
     
@@ -83,8 +83,9 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         let endDateString : String = endDatePickerField.text!
         let endDate : Date = dateFormatter.date(from: endDateString)!
         let description : String = descriptionTextView.text ?? ""
+        let image : UIImage = eventImage.image!
         
-        event = Event(name: name, startDate: startDate, endDate: endDate, description: description)
+        event = Event(name: name, startDate: startDate, endDate: endDate, description: description, image : image)
         
         print("Successfully saved")
     }
@@ -95,12 +96,13 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         eventImage.isUserInteractionEnabled = true
-        eventImage.frame.size.width = eventImage.image!.size.width
+        eventImage.contentMode = .scaleAspectFit
         
-        // Set delegate for all text fields, handle user input using this delegate
+        // Set delegate for all text fields and for the one text view, handle user input using this delegate
         self.eventNameField.delegate = self
         self.startDatePickerField.delegate = self
         self.endDatePickerField.delegate = self
+        self.descriptionTextView.delegate = self
         
         // Set date picker and toolbar as input views
         
@@ -138,7 +140,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
             endDatePickerField.text = dateFormatter.string(from: event.eventEndDate)
             
             descriptionTextView.text = event.eventDescription
-            
+            eventImage.image = event.eventImage
         }
         
         // Enable save button if text field has valid string
@@ -178,6 +180,16 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButton()
         navigationItem.title = eventNameField.text
+        
+    }
+    
+    //MARK: UITextView delegate method
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.text == "Enter Description Here" {
+            textView.text = ""
+        }
         
     }
     

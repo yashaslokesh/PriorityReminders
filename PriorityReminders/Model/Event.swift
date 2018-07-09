@@ -22,8 +22,9 @@ class Event : NSObject, NSCoding {
         let startDate = aDecoder.decodeObject(forKey: EventProperties.eventStartDate) as! Date
         let endDate = aDecoder.decodeObject(forKey: EventProperties.eventEndDate) as! Date
         let description = aDecoder.decodeObject(forKey: EventProperties.eventDescription) as? String
+        let image = aDecoder.decodeObject(forKey: EventProperties.eventImage) as! UIImage
         
-        self.init(name: name, startDate: startDate, endDate: endDate, description: description)
+        self.init(name: name, startDate: startDate, endDate: endDate, description: description, image : image)
         
     }
     
@@ -34,6 +35,7 @@ class Event : NSObject, NSCoding {
         static let eventStartDate = "startDate"
         static let eventEndDate = "endDate"
         static let eventDescription = "description"
+        static let eventImage = "image"
     }
     
     //MARK: Properties
@@ -42,15 +44,17 @@ class Event : NSObject, NSCoding {
     var eventStartDate : Date
     var eventEndDate : Date
     var eventDescription : String?
+    var eventImage : UIImage
+    
     
     //MARK: Local path for archiving Event instances
     
     static let FilesDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchivingURL = FilesDirectory.appendingPathComponent("events")
+    static let ArchivingURL = FilesDirectory.appendingPathComponent("priority_events")
     
     //MARK: Class Instance Initializer
     
-    init?(name : String, startDate : Date, endDate : Date, description : String?) {
+    init?(name : String, startDate : Date, endDate : Date, description : String?, image : UIImage) {
         
         guard endDate > startDate else {
             return nil
@@ -60,6 +64,7 @@ class Event : NSObject, NSCoding {
         self.eventStartDate = startDate
         self.eventEndDate = endDate
         self.eventDescription = description
+        self.eventImage = image
     }
     
     //MARK: NSCoding
@@ -70,6 +75,7 @@ class Event : NSObject, NSCoding {
         aCoder.encode(eventStartDate, forKey: EventProperties.eventStartDate)
         aCoder.encode(eventEndDate, forKey: EventProperties.eventEndDate)
         aCoder.encode(eventDescription, forKey: EventProperties.eventDescription)
+        aCoder.encode(eventImage, forKey: EventProperties.eventImage)
     }
     
     // Functions to get statistics about the dates
