@@ -192,14 +192,11 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
             // Remove the event that was chosen to be deleted from the events array
             events.remove(at: indexPath.row)
             
-            // Sort array
-            events = self.sortArray(array: events)
-            tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
             // Save Events array once the delete command goes through and an event is removed
             self.saveEvents()
             
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
