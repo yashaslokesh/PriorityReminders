@@ -212,8 +212,10 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         //Disable save button if any mandatory fields are empty
         let nameText : String = eventNameField.text ?? ""
         let endDateText : String = endDatePickerField.text!
+        let endDate : Date? = dateFormatter.date(from: endDatePickerField.text!)
+        let startDate : Date? = dateFormatter.date(from: startDatePickerField.text!)
         
-        saveEventButton.isEnabled = !(nameText.isEmpty || endDateText.isEmpty)
+        saveEventButton.isEnabled = !(nameText.isEmpty || endDateText.isEmpty) && endDate! > startDate!
     }
     
     func checkForAndResignFirstResponder() {
