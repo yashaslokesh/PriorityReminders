@@ -149,22 +149,23 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
             let percentage : Double = event.percentageDone()
             
             var date : DateComponents
+            var frequency : Int
+            var units : String
             
             let defaults = UserDefaults.standard
             
             if percentage >= 75.0 {
-                let frequency = defaults.integer(forKey: "highPriorityFrequency")
-                let units = defaults.string(forKey: "highPriorityUnits")!
-                date = Event.notificationDateCalculator(frequency: frequency, units: units)
+                frequency = defaults.integer(forKey: "highPriorityFrequency")
+                units = defaults.string(forKey: "highPriorityUnits")!
             } else if percentage >= 50.0 {
-                let frequency = defaults.integer(forKey: "mediumPriorityFrequency")
-                let units = defaults.string(forKey: "mediumPriorityUnits")!
-                date = Event.notificationDateCalculator(frequency: frequency, units: units)
+                frequency = defaults.integer(forKey: "mediumPriorityFrequency")
+                units = defaults.string(forKey: "mediumPriorityUnits")!
             } else {
-                let frequency = defaults.integer(forKey: "lowestPriorityFrequency")
-                let units = defaults.string(forKey: "lowestPriorityUnits")!
-                date = Event.notificationDateCalculator(frequency: frequency, units: units)
+                frequency = defaults.integer(forKey: "lowestPriorityFrequency")
+                units = defaults.string(forKey: "lowestPriorityUnits")!
             }
+            
+           date = Event.notificationDateCalculator(frequency: frequency, units: units)
             
             let content = UNMutableNotificationContent()
             content.body = "\(event.eventName) is coming up in \(event.daysLeft()) more days"
@@ -258,15 +259,15 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
     // Create sample events to populate the screen, when the app is first loaded
     
     private func createSampleEvents() {
-        guard let eventOne = Event(name: "Be Awesome", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Don't forget to be awesome everyday!") else {
+        guard let eventOne = Event(name: "Be Awesome", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Don't forget to be awesome everyday!", image : UIImage(named: "awesome")!) else {
             fatalError("eventOne Creation failure")
         }
         
-        guard let eventTwo = Event(name: "Eat Breakfast", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Eat breakfast everyday so you have energy in the mornings!") else {
+        guard let eventTwo = Event(name: "Eat Breakfast", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Eat breakfast everyday so you have energy in the mornings!", image: UIImage(named: "breakfast")!) else {
             fatalError("eventTwo Creation failure")
         }
         
-        guard let eventThree = Event(name: "Change the World", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Go out and change the world, in any small way that you can...") else {
+        guard let eventThree = Event(name: "Change the World", startDate: Date(), endDate: Date(timeInterval: 315532800, since: Date()), description: "Go out and change the world, in any small way that you can...", image : UIImage(named: "world")!) else {
             fatalError("eventThree Creation Failure")
         }
 
