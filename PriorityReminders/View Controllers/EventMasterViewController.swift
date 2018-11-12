@@ -277,19 +277,51 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
     // Use NSKeyedArchiver to archive the Events array to memory with the path specified in the Event class
     
     private func saveEvents() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: Event.ArchivingURL.path)
+        // Deprecated Method
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(events, toFile: Event.ArchivingURL.path)
         
-        if isSuccessfulSave {
-            os_log("Events successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save events...", log: OSLog.default, type: .error)
+//        if isSuccessfulSave {
+//            os_log("Events successfully saved.", log: OSLog.default, type: .debug)
+//        } else {
+//            os_log("Failed to save events...", log: OSLog.default, type: .error)
+//        }
+        
+        let eventsData = try? NSKeyedArchiver.archivedData(withRootObject: events, requiringSecureCoding: false)
+        
+        guard let _ = eventsData else {
+            os_log("Failed to save events when archiving events to Data object", log: OSLog.default, type: .error)
+            return
         }
+        
+        do {
+            try eventsData?.write(to: Event.ArchivingURL)
+        } catch {
+            os_log("Failed to save events when writing to file", log: OSLog.default, type: .error)
+        }
+        
+
     }
     
     // Use NSKeyedUnarchiver to unarchive the optional Events array from memory with the path specified in the Event class
     
     private func loadEventsToArray() -> [Event]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Event.ArchivingURL.path) as? [Event]
+        // Deprecated Method
+//        return NSKeyedUnarchiver.unarchiveObject(withFile: Event.ArchivingURL.path) as? [Event]
+        let eventsData = try? Data.init(contentsOf: Event.ArchivingURL)
+        
+        guard let _ = eventsData else {
+            os_log("Failed to retrieve events that were saved to file", log: OSLog.default, type: .error)
+            return nil
+        }
+        
+        do {
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(eventsData!) as? [Event]
+        } catch {
+            print(error)
+            os_log("Failed to unarchive events that retrieved from storage", log: OSLog.default, type: .error)
+        }
+        
+        return nil
     }
     
     // Sorts array in descending order so that events with a higher percentage done are at the top, then reloads the table view so that the table view complies
