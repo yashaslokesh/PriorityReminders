@@ -12,8 +12,8 @@ extension UIView {
     
     func textChangeTransition(_ duration : CFTimeInterval) -> Void {
         let animation : CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        animation.type = kCATransitionFade
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        animation.type = CATransitionType.fade
         animation.duration = duration
         layer.add(animation, forKey: "textChangeTransition")
     }

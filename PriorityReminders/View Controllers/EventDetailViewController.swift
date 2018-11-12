@@ -113,9 +113,9 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         
-        datePicker.addTarget(self, action: #selector(EventDetailViewController.datePickerChangedValue(_:)), for: UIControlEvents.valueChanged)
+        datePicker.addTarget(self, action: #selector(EventDetailViewController.datePickerChangedValue(_:)), for: UIControl.Event.valueChanged)
         
-        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(EventDetailViewController.doneSelection))
+        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(EventDetailViewController.doneSelection))
         
         let toolbar : UIToolbar = UIToolbar()
         toolbar.barStyle = .default
@@ -199,9 +199,12 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        guard let selected = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+        guard let selected = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
             fatalError("Wrong type of image or file, was of type: \(info)")
         }
         
@@ -242,4 +245,14 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

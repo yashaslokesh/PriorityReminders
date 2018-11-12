@@ -24,6 +24,7 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         
         if let savedEvents = self.loadEventsToArray() {
             events += savedEvents
+            print("Successfully loaded data from memory")
         } else {
             createSampleEvents()
         }
@@ -112,15 +113,15 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         case "Days Left":
 //            cell.setAccessoryInfoLabelText(text: "Start Date")
             cell.accessoryInfoLabel.text = "Start Date"
-            cell.accessoryInfoButton.setTitle(startDate, for: UIControlState.normal)
+            cell.accessoryInfoButton.setTitle(startDate, for: UIControl.State.normal)
         case "Start Date":
 //            cell.setAccessoryInfoLabelText(text: "End Date")
             cell.accessoryInfoLabel.text = "End Date"
-            cell.accessoryInfoButton.setTitle(endDate, for: UIControlState.normal)
+            cell.accessoryInfoButton.setTitle(endDate, for: UIControl.State.normal)
         case "End Date":
 //            cell.setAccessoryInfoLabelText(text: "Days Left")
             cell.accessoryInfoLabel.text = "Days Left"
-            cell.accessoryInfoButton.setTitle("\(daysLeft)", for: UIControlState.normal)
+            cell.accessoryInfoButton.setTitle("\(daysLeft)", for: UIControl.State.normal)
         default:
             fatalError("Fix the Accessory Info Label")
         }
@@ -188,7 +189,7 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
 
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Remove the event that was chosen to be deleted from the events array
             events.remove(at: indexPath.row)
@@ -297,9 +298,10 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
             try eventsData?.write(to: Event.ArchivingURL)
         } catch {
             os_log("Failed to save events when writing to file", log: OSLog.default, type: .error)
+            return
         }
         
-
+        print("Successfuly save of events")
     }
     
     // Use NSKeyedUnarchiver to unarchive the optional Events array from memory with the path specified in the Event class
