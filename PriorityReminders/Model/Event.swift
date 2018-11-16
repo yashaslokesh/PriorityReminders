@@ -104,10 +104,39 @@ class Event : NSObject, NSCoding {
         return percentage ?? 0.00
     }
     
+    // Will calculate time to set notification?
+    // To be completed in future
     static func notificationDateCalculator( frequency : Int, units : String) -> DateComponents {
         var date = DateComponents()
         
         return date
     }
     
+    // From: https://developer.apple.com/documentation/uikit/uiimage/1624096-pngdata
+    private static func areImagesEqual(image1 : UIImage, image2 : UIImage) -> Bool {
+        let image1Data : Data? = image1.pngData()
+        let image2Data : Data? = image2.pngData()
+        return image1Data == image2Data
+    }
+}
+
+// From: https://developer.apple.com/documentation/swift/customstringconvertible/1539130-description
+// Defines the description, which will be printed when calling String(event_instance)
+// No need to implement CustomStringConvertible because NSObject already does that
+extension Event {
+    override var description : String {
+        return "Event Name: \(eventName)\n" + "Start Date: \(eventStartDate)\n" + "End Date: \(eventEndDate)\n" + "Description: \(eventDescription ?? "N/A")\n"
+    }
+}
+
+// From: https://developer.apple.com/documentation/swift/equatable
+// Defines the equality operator for comparing two events
+extension Event {
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return lhs.eventName == rhs.eventName &&
+               lhs.eventStartDate == rhs.eventStartDate &&
+               lhs.eventEndDate == rhs.eventEndDate &&
+               lhs.eventDescription == rhs.eventDescription &&
+               areImagesEqual(image1: lhs.eventImage, image2: rhs.eventImage)
+    }
 }
