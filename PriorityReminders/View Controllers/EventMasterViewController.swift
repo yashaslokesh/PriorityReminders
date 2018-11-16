@@ -331,3 +331,15 @@ class EventMasterViewController: UITableViewController, EventTableViewCellDelega
         return array.sorted(by: { $0.percentageDone() > $1.percentageDone()})
     }
 }
+
+// From: https://developer.apple.com/documentation/swift/customstringconvertible#relationships
+// Returns a string describing all events currently stored. Uses the description property set in an event instance
+extension EventMasterViewController {
+    override var description : String {
+        var result = ""
+        for event in events {
+            result += String(describing: event)
+        }
+        return result
+    }
+}
