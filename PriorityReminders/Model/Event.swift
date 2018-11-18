@@ -83,9 +83,16 @@ class Event : NSObject, NSCoding {
     func daysLeft() -> Int {
         let calendar = Calendar.current
         
-        let components = calendar.dateComponents([.day], from: Date(), to: eventEndDate)
+        let daysToStart = calendar.dateComponents([.day], from: Date(), to: eventStartDate)
+        let daysToEnd = calendar.dateComponents([.day], from: Date(), to: eventEndDate)
         
-        return components.day ?? 0
+        if let daysLeft = daysToStart.day {
+            if daysLeft > 0 {
+                return daysLeft
+            }
+        }
+        
+        return daysToEnd.day ?? 0
     }
     
     func percentageDone() -> Double {
