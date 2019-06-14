@@ -14,6 +14,13 @@ protocol EventViewCellDelegate : class {
 
 class EventViewCell: BaseCollectionCell {
     
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? UIColor(red: 0, green: 134/255, blue: 249/255, alpha: 1) : UIColor.white
+            setLabelsTextColor(color: isHighlighted ? .white : .black)
+        }
+    }
+    
     let previewImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -52,8 +59,8 @@ class EventViewCell: BaseCollectionCell {
         addSubview(rightContainerView)
         
         addConstraints(withFormat: "H:|-[v0]-[v1(<=100)]-|", forViews: nameLabel, rightContainerView)
-        addConstraints(withFormat: "V:|[v0]|", forViews: nameLabel)
-        addConstraints(withFormat: "V:|[v0]|", forViews: rightContainerView)
+        addConstraints(withFormat: "V:|-[v0]-|", forViews: nameLabel)
+        addConstraints(withFormat: "V:|-[v0]-|", forViews: rightContainerView)
         
         rightContainerView.addSubview(eventInfoLabel)
         rightContainerView.addSubview(eventInfoTypeLabel)
@@ -62,7 +69,8 @@ class EventViewCell: BaseCollectionCell {
 //        rightContainerView.addConstraints(withFormat: "H:|[v0]|", forViews: eventInfoLabel)
         rightContainerView.addConstraints(withFormat: "V:|[v0]-[v1]|", forViews: eventInfoTypeLabel, eventInfoLabel)
         
-        rightContainerView.addConstraint(NSLayoutConstraint(item: eventInfoLabel, attribute: .centerX, relatedBy: .equal, toItem: self.superview, attribute: .centerX, multiplier: 1, constant: 0))
+        // toItem must be the direct superview of the eventInfoLabel, in this case, it is rightContainerView
+        rightContainerView.addConstraint(NSLayoutConstraint(item: eventInfoLabel, attribute: .centerX, relatedBy: .equal, toItem: rightContainerView, attribute: .centerX, multiplier: 1, constant: 0))
     }
     
 //    override func awakeFromNib() {
@@ -95,6 +103,7 @@ class EventViewCell: BaseCollectionCell {
     
     func setLabelsTextColor(color : UIColor) {
         nameLabel.textColor = color
+        eventInfoLabel.textColor = color
         eventInfoTypeLabel.textColor = color
     }
 

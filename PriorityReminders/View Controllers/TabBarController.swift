@@ -15,11 +15,12 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let layout = UICollectionViewFlowLayout()
+        
         let eventsMasterController = EventsViewController(collectionViewLayout: layout)
         let eventsMasterNavController = UINavigationController(rootViewController: eventsMasterController)
         eventsMasterNavController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 0)
         
-        let settingsViewController = UIViewController()
+        let settingsViewController = SettingsViewController(collectionViewLayout: layout)
         let settingsNavController = UINavigationController(rootViewController: settingsViewController)
         settingsNavController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
         

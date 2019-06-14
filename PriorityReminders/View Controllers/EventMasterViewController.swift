@@ -19,6 +19,8 @@ class EventsViewController: UICollectionViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
+        
         collectionView.backgroundColor = .white
         navigationItem.title = "Reminders"
         

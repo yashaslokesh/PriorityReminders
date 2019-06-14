@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C83C370720C4464400ED5901 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370620C4464400ED5901 /* SettingsTableViewController.swift */; };
-		C83C370920C44BE200ED5901 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */; };
+		C83C370720C4464400ED5901 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370620C4464400ED5901 /* SettingsViewController.swift */; };
+		C83C370920C44BE200ED5901 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370820C44BE200ED5901 /* SettingsViewCell.swift */; };
 		C86E1D9722B3231100B738C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1D9622B3231100B738C8 /* TabBarController.swift */; };
 		C86E1D9922B3287E00B738C8 /* BaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1D9822B3287E00B738C8 /* BaseCollectionCell.swift */; };
 		C86E1D9C22B3366100B738C8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C86E1D9A22B3366100B738C8 /* Model.xcdatamodeld */; };
@@ -46,8 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C83C370620C4464400ED5901 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = "PriorityReminders/View Controllers/SettingsTableViewController.swift"; sourceTree = SOURCE_ROOT; };
-		C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = "PriorityReminders/Table Cells/SettingsTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C83C370620C4464400ED5901 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "PriorityReminders/View Controllers/SettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		C83C370820C44BE200ED5901 /* SettingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewCell.swift; path = "PriorityReminders/Table Cells/SettingsViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C86E1D9622B3231100B738C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C86E1D9822B3287E00B738C8 /* BaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
 		C86E1D9B22B3366100B738C8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */,
-				C83C370620C4464400ED5901 /* SettingsTableViewController.swift */,
+				C83C370620C4464400ED5901 /* SettingsViewController.swift */,
 				C8F46D3420BB9FA20048E755 /* EventDetailViewController.swift */,
 				C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */,
 				C86E1D9622B3231100B738C8 /* TabBarController.swift */,
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */,
-				C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */,
+				C83C370820C44BE200ED5901 /* SettingsViewCell.swift */,
 				C8E9403C20BCE57E00B3AD31 /* EventViewCell.swift */,
 				C86E1D9822B3287E00B738C8 /* BaseCollectionCell.swift */,
 			);
@@ -340,9 +340,9 @@
 				C8E9403D20BCE57E00B3AD31 /* EventViewCell.swift in Sources */,
 				C86E1D9722B3231100B738C8 /* TabBarController.swift in Sources */,
 				C8F46D3520BB9FA20048E755 /* EventDetailViewController.swift in Sources */,
-				C83C370720C4464400ED5901 /* SettingsTableViewController.swift in Sources */,
+				C83C370720C4464400ED5901 /* SettingsViewController.swift in Sources */,
 				C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */,
-				C83C370920C44BE200ED5901 /* SettingsTableViewCell.swift in Sources */,
+				C83C370920C44BE200ED5901 /* SettingsViewCell.swift in Sources */,
 				C86E1DA122B3452F00B738C8 /* EventsViewExt.swift in Sources */,
 				C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */,
 				C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */,

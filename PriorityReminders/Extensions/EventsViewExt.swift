@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension EventsViewController {
+    // This extension is mainly used for managing the test data. Core Data will be setup and tested here
     
     func clearData() {
         
