@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class Event : NSObject, NSCoding {
+class Event: NSObject, NSCoding {
     
     // an initializer to test the decoding of the name object, at a minimum, and then decodes the rest of the properties
     
@@ -114,7 +114,7 @@ class Event : NSObject, NSCoding {
     // Will calculate time to set notification?
     // To be completed in future
     static func notificationDateCalculator( frequency : Int, units : String) -> DateComponents {
-        var date = DateComponents()
+        let date = DateComponents()
         
         return date
     }

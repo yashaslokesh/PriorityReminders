@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		C83C370720C4464400ED5901 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370620C4464400ED5901 /* SettingsTableViewController.swift */; };
 		C83C370920C44BE200ED5901 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */; };
+		C86E1D9722B3231100B738C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1D9622B3231100B738C8 /* TabBarController.swift */; };
+		C86E1D9922B3287E00B738C8 /* BaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1D9822B3287E00B738C8 /* BaseCollectionCell.swift */; };
+		C86E1D9C22B3366100B738C8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C86E1D9A22B3366100B738C8 /* Model.xcdatamodeld */; };
+		C86E1DA122B3452F00B738C8 /* EventsViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1DA022B3452F00B738C8 /* EventsViewExt.swift */; };
+		C86E1DA322B346A300B738C8 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1DA222B346A300B738C8 /* UIViewExt.swift */; };
 		C8C907AE20C6F4AB0099CEFF /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */; };
 		C8C907B020C6F4C30099CEFF /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */; };
-		C8C907B420C87C6A0099CEFF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907B320C87C690099CEFF /* Extensions.swift */; };
-		C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */; };
+		C8E9403D20BCE57E00B3AD31 /* EventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventViewCell.swift */; };
 		C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */; };
 		C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9404020BCEAE200B3AD31 /* Event.swift */; };
 		C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F46D3220BB9FA20048E755 /* AppDelegate.swift */; };
@@ -44,10 +48,14 @@
 /* Begin PBXFileReference section */
 		C83C370620C4464400ED5901 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = "PriorityReminders/View Controllers/SettingsTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewCell.swift; path = "PriorityReminders/Table Cells/SettingsTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C86E1D9622B3231100B738C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C86E1D9822B3287E00B738C8 /* BaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
+		C86E1D9B22B3366100B738C8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C86E1DA022B3452F00B738C8 /* EventsViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewExt.swift; sourceTree = "<group>"; };
+		C86E1DA222B346A300B738C8 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		C8C907AF20C6F4C30099CEFF /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
-		C8C907B320C87C690099CEFF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		C8E9403C20BCE57E00B3AD31 /* EventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewCell.swift; sourceTree = "<group>"; };
 		C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMasterViewController.swift; sourceTree = "<group>"; };
 		C8E9404020BCEAE200B3AD31 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		C8F46D2F20BB9FA20048E755 /* PriorityReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PriorityReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +114,7 @@
 				C83C370620C4464400ED5901 /* SettingsTableViewController.swift */,
 				C8F46D3420BB9FA20048E755 /* EventDetailViewController.swift */,
 				C8E9403E20BCEA9700B3AD31 /* EventMasterViewController.swift */,
+				C86E1D9622B3231100B738C8 /* TabBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -115,7 +124,8 @@
 			children = (
 				C8C907AD20C6F4AB0099CEFF /* NotificationsTableViewCell.swift */,
 				C83C370820C44BE200ED5901 /* SettingsTableViewCell.swift */,
-				C8E9403C20BCE57E00B3AD31 /* EventTableViewCell.swift */,
+				C8E9403C20BCE57E00B3AD31 /* EventViewCell.swift */,
+				C86E1D9822B3287E00B738C8 /* BaseCollectionCell.swift */,
 			);
 			path = "Table Cells";
 			sourceTree = "<group>";
@@ -123,9 +133,19 @@
 		C8550A9020C352CE0022B815 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C86E1D9A22B3366100B738C8 /* Model.xcdatamodeld */,
 				C8E9404020BCEAE200B3AD31 /* Event.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C86E1D9F22B3443000B738C8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C86E1DA022B3452F00B738C8 /* EventsViewExt.swift */,
+				C86E1DA222B346A300B738C8 /* UIViewExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C8F46D2620BB9FA10048E755 = {
@@ -151,7 +171,7 @@
 		C8F46D3120BB9FA20048E755 /* PriorityReminders */ = {
 			isa = PBXGroup;
 			children = (
-				C8C907B320C87C690099CEFF /* Extensions.swift */,
+				C86E1D9F22B3443000B738C8 /* Extensions */,
 				C83C370520C356A900ED5901 /* Storyboards */,
 				C8550A8A20C352710022B815 /* View Controllers */,
 				C8550A8D20C3529B0022B815 /* Table Cells */,
@@ -249,16 +269,16 @@
 				TargetAttributes = {
 					C8F46D2E20BB9FA10048E755 = {
 						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					C8F46D4220BB9FA20048E755 = {
 						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = C8F46D2E20BB9FA10048E755;
 					};
 					C8F46D4D20BB9FA20048E755 = {
 						CreatedOnToolsVersion = 9.3.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = C8F46D2E20BB9FA10048E755;
 					};
 				};
@@ -315,15 +335,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86E1DA322B346A300B738C8 /* UIViewExt.swift in Sources */,
 				C8C907AE20C6F4AB0099CEFF /* NotificationsTableViewCell.swift in Sources */,
-				C8E9403D20BCE57E00B3AD31 /* EventTableViewCell.swift in Sources */,
+				C8E9403D20BCE57E00B3AD31 /* EventViewCell.swift in Sources */,
+				C86E1D9722B3231100B738C8 /* TabBarController.swift in Sources */,
 				C8F46D3520BB9FA20048E755 /* EventDetailViewController.swift in Sources */,
 				C83C370720C4464400ED5901 /* SettingsTableViewController.swift in Sources */,
 				C8E9403F20BCEA9700B3AD31 /* EventMasterViewController.swift in Sources */,
 				C83C370920C44BE200ED5901 /* SettingsTableViewCell.swift in Sources */,
+				C86E1DA122B3452F00B738C8 /* EventsViewExt.swift in Sources */,
 				C8F46D3320BB9FA20048E755 /* AppDelegate.swift in Sources */,
 				C8E9404120BCEAE200B3AD31 /* Event.swift in Sources */,
-				C8C907B420C87C6A0099CEFF /* Extensions.swift in Sources */,
+				C86E1D9922B3287E00B738C8 /* BaseCollectionCell.swift in Sources */,
+				C86E1D9C22B3366100B738C8 /* Model.xcdatamodeld in Sources */,
 				C8C907B020C6F4C30099CEFF /* NotificationsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,7 +531,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lokeshkrishnappa.PriorityReminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -526,7 +550,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lokeshkrishnappa.PriorityReminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -546,7 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yashaslokesh.PriorityRemindersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PriorityReminders.app/PriorityReminders";
 			};
@@ -567,7 +591,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yashaslokesh.PriorityRemindersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PriorityReminders.app/PriorityReminders";
 			};
@@ -587,7 +611,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yashaslokesh.PriorityRemindersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = PriorityReminders;
 			};
@@ -607,7 +631,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yashaslokesh.PriorityRemindersUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = PriorityReminders;
 			};
@@ -653,6 +677,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C86E1D9A22B3366100B738C8 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C86E1D9B22B3366100B738C8 /* Model.xcdatamodel */,
+			);
+			currentVersion = C86E1D9B22B3366100B738C8 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C8F46D2720BB9FA10048E755 /* Project object */;
 }

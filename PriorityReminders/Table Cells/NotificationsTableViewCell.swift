@@ -14,6 +14,8 @@ class NotificationsTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var numberTextField: UITextField!
     @IBOutlet weak var timeSettingTextField: UITextField!
     
+    
+    
     let timeSettings = ["Hours","Days","Weeks","Months"]
     
     override func awakeFromNib() {
@@ -49,9 +51,12 @@ class NotificationsTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPicke
     
     func setupTextFieldInputs(_ timeTextField : UITextField, _ numberTextField : UITextField) -> Void {
         
-        let timePicker = UIPickerView()
-        timePicker.delegate = self
-        timePicker.dataSource = self
+        let timePicker : UIPickerView = {
+            let pickerView = UIPickerView()
+            pickerView.delegate = self
+            pickerView.dataSource = self
+            return pickerView
+        }()
         
         let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotificationsTableViewCell.doneSelection(_:)))
         
