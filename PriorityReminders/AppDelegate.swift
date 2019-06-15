@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-        let container = NSPersistentContainer(name: "StackViewer")
+        let container = NSPersistentContainer(name: "PriorityReminders")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -121,8 +121,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return container
     }()
     
-    // MARK: - Core Data Saving support
     
+    // Static version of persistentContainer to allow this syntax
+    // let coreDataContainer = AppDelegate.persistentContainer
+    static var persistentContainer: NSPersistentContainer = {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }()
+    
+    // Access the context for core data like this
+    // let context = AppDelegate.viewContext
+    // Note: Only returns context for the specified persistent container above.
+    static var viewContext: NSManagedObjectContext = {
+        return persistentContainer.viewContext
+    }()
+    
+    
+    // MARK: - Core Data Saving support
+    // Only saves the context for the persistentContainer created above
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

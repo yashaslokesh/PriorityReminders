@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationsTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
+class NotificationsViewCell: BaseCollectionCell, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var notificationSettingLabel: UILabel!
     @IBOutlet weak var numberTextField: UITextField!
@@ -25,12 +25,6 @@ class NotificationsTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPicke
         numberTextField.keyboardType = .numberPad
         self.setupTextFieldInputs(timeSettingTextField, numberTextField)
         
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -58,7 +52,7 @@ class NotificationsTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPicke
             return pickerView
         }()
         
-        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotificationsTableViewCell.doneSelection(_:)))
+        let doneButton : UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(NotificationsViewCell.doneSelection(_:)))
         
         let toolbar : UIToolbar = UIToolbar()
         toolbar.barStyle = .default
