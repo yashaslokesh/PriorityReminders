@@ -15,6 +15,7 @@
 		C86E1DA122B3452F00B738C8 /* EventsViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1DA022B3452F00B738C8 /* EventsViewExt.swift */; };
 		C86E1DA322B346A300B738C8 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E1DA222B346A300B738C8 /* UIViewExt.swift */; };
 		C8C5004822B495F80007789F /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5004622B495F80007789F /* Event+CoreDataClass.swift */; };
+		C8C5005322B535C60007789F /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5005122B535C60007789F /* Event+CoreDataProperties.swift */; };
 		C8C907AE20C6F4AB0099CEFF /* NotificationsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AD20C6F4AB0099CEFF /* NotificationsViewCell.swift */; };
 		C8C907B020C6F4C30099CEFF /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C907AF20C6F4C30099CEFF /* NotificationsViewController.swift */; };
 		C8E9403D20BCE57E00B3AD31 /* EventViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9403C20BCE57E00B3AD31 /* EventViewCell.swift */; };
@@ -55,6 +56,7 @@
 		C86E1DA022B3452F00B738C8 /* EventsViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewExt.swift; sourceTree = "<group>"; };
 		C86E1DA222B346A300B738C8 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		C8C5004622B495F80007789F /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C8C5005122B535C60007789F /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C8C907AD20C6F4AB0099CEFF /* NotificationsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewCell.swift; sourceTree = "<group>"; };
 		C8C907AF20C6F4C30099CEFF /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		C8E9403C20BCE57E00B3AD31 /* EventViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewCell.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		C8550A9020C352CE0022B815 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C8C5005122B535C60007789F /* Event+CoreDataProperties.swift */,
 				C8C5004622B495F80007789F /* Event+CoreDataClass.swift */,
 				C86E1D9A22B3366100B738C8 /* PriorityReminders.xcdatamodeld */,
 				C8E9404020BCEAE200B3AD31 /* Event.swift */,
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C86E1DA322B346A300B738C8 /* UIViewExt.swift in Sources */,
+				C8C5005322B535C60007789F /* Event+CoreDataProperties.swift in Sources */,
 				C8C907AE20C6F4AB0099CEFF /* NotificationsViewCell.swift in Sources */,
 				C8E9403D20BCE57E00B3AD31 /* EventViewCell.swift in Sources */,
 				C86E1D9722B3231100B738C8 /* TabBarController.swift in Sources */,

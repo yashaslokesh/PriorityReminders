@@ -85,7 +85,7 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         let description : String = descriptionTextView.text ?? ""
         let image : UIImage = eventImage.image!
         
-        event = Event(name: name, startDate: startDate, endDate: endDate, description: description, image : image)
+        let event = Event(name: name, startDate: startDate, endDate: endDate, decsr: description, imageName: "image")
         
         print("Successfully saved")
     }
@@ -134,13 +134,14 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
         // If the event is non-nil (it exists already), then populate view with already-set properties, for the purpose of editing the event entry
         
         if let event = event {
-            eventNameField.text = event.eventName
+            eventNameField.text = event.name
             
-            startDatePickerField.text = dateFormatter.string(from: event.eventStartDate)
-            endDatePickerField.text = dateFormatter.string(from: event.eventEndDate)
+            startDatePickerField.text = dateFormatter.string(from: event.startDate as Date)
+            endDatePickerField.text = dateFormatter.string(from: event.endDate as Date)
             
-            descriptionTextView.text = event.eventDescription
-            eventImage.image = event.eventImage
+            descriptionTextView.text = event.descr
+            
+            eventImage.image = UIImage(named: event.imageName)
         }
         
         // Enable save button if text field has valid string

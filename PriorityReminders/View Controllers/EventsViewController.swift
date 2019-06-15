@@ -14,10 +14,12 @@ import os.log
 class EventsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let cellId = "id"
-    var events: [Event]?
+    var events: [Event] = [Event]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        events = []
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
         
@@ -34,17 +36,16 @@ class EventsViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return events?.count ?? 1
+        return events.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventViewCell
         
-        if let event = events?[indexPath.item] {
-            cell.nameLabel.text = event.eventName
-            cell.eventInfoTypeLabel.text = "Days Left"
-            cell.eventInfoLabel.text = "Some Date"
-        }
+        let event = events[indexPath.item]
+        cell.nameLabel.text = event.name
+        cell.eventInfoTypeLabel.text = "Days Left"
+        cell.eventInfoLabel.text = "Some Date"
         
         return cell
     }
