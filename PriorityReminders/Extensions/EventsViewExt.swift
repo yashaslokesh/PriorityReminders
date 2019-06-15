@@ -20,5 +20,6 @@ extension EventsViewController {
         clearData()
         
         
+        
     }
 }
