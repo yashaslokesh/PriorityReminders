@@ -55,8 +55,11 @@ class EventsViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let layout = UICollectionViewFlowLayout()
         let controller = EventDetailViewController()
+        controller.event = events[indexPath.item]
+        navigationController?.pushViewController(controller, animated: true)
         
     }
     

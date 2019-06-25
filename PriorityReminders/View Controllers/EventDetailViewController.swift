@@ -14,20 +14,94 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
 
     //MARK: Properties
     
-    @IBOutlet weak var saveEventButton: UIBarButtonItem!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var eventNameField: UITextField!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var eventImage: UIImageView!
+    private func setup() {
+        
+        imageView = {
+            let view = UIImageView()
+            view.isUserInteractionEnabled = true
+            view.contentMode = .scaleAspectFill
+            return view
+        }()
+        
+        let datePicker : UIDatePicker = {
+            let picker = UIDatePicker()
+            picker.datePickerMode = .date
+            picker.addTarget(self, action: #selector(datePickerChangedValue(_:)), for: .valueChanged)
+            return picker
+        }()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneSelection(_:)))
+        
+        let toolbar : UIToolbar = {
+            let tb = UIToolbar()
+            tb.barStyle = .default
+            tb.sizeToFit()
+            tb.setItems([doneButton], animated: true)
+            tb.isUserInteractionEnabled = true
+            return tb
+        }()
+        
+        startDateField = {
+            let field = UITextField()
+            field.inputView = datePicker
+            field.inputAccessoryView = toolbar
+            field.delegate = self
+            return field
+        }()
+        
+        endDateField = {
+            let field = UITextField()
+            field.inputView = datePicker
+            field.inputAccessoryView = toolbar
+            field.delegate = self
+            return field
+        }()
+        
+        nameField = {
+            let field = UITextField()
+            field.delegate = self
+            return field
+        }()
+        
+        descriptionTextView = {
+            let view = UITextView()
+            view.inputAccessoryView = toolbar
+            view.delegate = self
+            ()
+        }()
+        
+    }
+    
+    let saveEventButton = UIBarButtonItem()
+    var scrollView : UIScrollView?
+    var nameField : UITextField?
+    var descriptionTextView : UITextView?
+    var imageView : UIImageView?
+    
+    var startDateField : UITextField?
+    var endDateField : UITextField?
+    
+//    let startDateField: UITextField = {
+//        let field = UITextField()
+//        field.inputView = datePicker
+//        field.inputAccessoryView = toolbar
+//        return field
+//    }()
+    
+//    @IBOutlet weak var saveEventButton: UIBarButtonItem!
+//    @IBOutlet weak var scrollView: UIScrollView!
+//    @IBOutlet weak var eventNameField: UITextField!
+//    @IBOutlet weak var descriptionTextView: UITextView!
+//    @IBOutlet weak var eventImage: UIImageView!
     
     var event : Event?
     
-    let dateFormatter : DateFormatter = DateFormatter()
+//    let dateFormatter : DateFormatter = DateFormatter()
     
     // Date Picker Text Fields
-    
-    @IBOutlet weak var startDatePickerField: UITextField!
-    @IBOutlet weak var endDatePickerField: UITextField!
+//
+//    @IBOutlet weak var startDatePickerField: UITextField!
+//    @IBOutlet weak var endDatePickerField: UITextField!
     
     // Date Picker
     
@@ -66,29 +140,29 @@ class EventDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     //MARK: Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        guard let button = sender as? UIBarButtonItem, button === saveEventButton else {
-            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
-            return
-        }
-        
-        // ?? asks if a UITextField.text has a value, and if it does, it returns that value. If it does not, it returns the String value placed after the ??
-        
-        let name : String = eventNameField.text!
-        let startDateString : String = startDatePickerField.text!
-        let startDate : Date = dateFormatter.date(from: startDateString)!
-        
-        let endDateString : String = endDatePickerField.text!
-        let endDate : Date = dateFormatter.date(from: endDateString)!
-        let description : String = descriptionTextView.text ?? ""
-        let image : UIImage = eventImage.image!
-        
-        let event = Event(name: name, startDate: startDate, endDate: endDate, decsr: description, imageName: "image")
-        
-        print("Successfully saved")
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//
+//        guard let button = sender as? UIBarButtonItem, button === saveEventButton else {
+//            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+//            return
+//        }
+//
+//        // ?? asks if a UITextField.text has a value, and if it does, it returns that value. If it does not, it returns the String value placed after the ??
+//
+//        let name : String = eventNameField.text!
+//        let startDateString : String = startDatePickerField.text!
+//        let startDate : Date = dateFormatter.date(from: startDateString)!
+//
+//        let endDateString : String = endDatePickerField.text!
+//        let endDate : Date = dateFormatter.date(from: endDateString)!
+//        let description : String = descriptionTextView.text ?? ""
+//        let image : UIImage = eventImage.image!
+//
+//        let event = Event(name: name, startDate: startDate, endDate: endDate, decsr: description, imageName: "image")
+//
+//        print("Successfully saved")
+//    }
     
     //MARK: viewDidLoad()
     
